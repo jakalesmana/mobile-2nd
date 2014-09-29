@@ -29,6 +29,7 @@ import org.apache.http.params.HttpParams;
 import android.content.Context;
 import android.util.Log;
 
+import com.dyned.generalenglish1.app.GEApplication;
 import com.dyned.generalenglish1.util.AppUtil;
 import com.dyned.generalenglish1.util.URLAddress;
 
@@ -91,11 +92,12 @@ public class PostInternetTask extends InternetTask {
 			httppost.setParams(httpParameters);
 			httppost.addHeader("Content-Type",
 					"application/x-www-form-urlencoded");
+			
 			httppost.addHeader("X-API-KEY", URLAddress.API_KEY);
 			httppost.addHeader("X-APP-VERSION ", AppUtil.getVersionName(context));
-			httppost.addHeader("X-APP-NAME ", AppUtil.getApplicationName(context));
+			httppost.addHeader("X-APP-NAME ", GEApplication.appName);
 			httppost.addHeader("X-DEVICE-MODEL", AppUtil.getDeviceName());
-			httppost.addHeader("X-DEVICE-OS", AppUtil.getOsversion());
+			httppost.addHeader("X-DEVICE-OS", "Android " + AppUtil.getOsversion());
 			
 			HttpResponse response = httpClient.execute(httppost);
 
@@ -131,11 +133,12 @@ public class PostInternetTask extends InternetTask {
 //			int timeoutConnection = 120000;
 			httppost.addHeader("Content-Type",
 					"application/x-www-form-urlencoded");
+			
 			httppost.addHeader("X-API-KEY", URLAddress.API_KEY);
 			httppost.addHeader("X-APP-VERSION ", AppUtil.getVersionName(context));
-			httppost.addHeader("X-APP-NAME ", AppUtil.getApplicationName(context));
+			httppost.addHeader("X-APP-NAME ", GEApplication.appName);
 			httppost.addHeader("X-DEVICE-MODEL", AppUtil.getDeviceName());
-			httppost.addHeader("X-DEVICE-OS", AppUtil.getOsversion());
+			httppost.addHeader("X-DEVICE-OS", "Android " + AppUtil.getOsversion());
 			
 			HttpResponse response = httpclient.execute(httppost);
 

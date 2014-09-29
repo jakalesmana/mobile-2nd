@@ -1,5 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView1"
+    android:id="@+id/svHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -234,7 +234,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/unit_1_grey" />
+                            android:src="@drawable/unit_2_grey" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -268,7 +268,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/unit_1_grey" />
+                            android:src="@drawable/unit_3_grey" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -302,7 +302,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/unit_1_grey" />
+                            android:src="@drawable/unit_4_grey" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -336,7 +336,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/unit_1_grey" />
+                            android:src="@drawable/unit_5_grey" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -370,7 +370,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/unit_1_grey" />
+                            android:src="@drawable/unit_6_grey" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -404,7 +404,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/unit_1_grey" />
+                            android:src="@drawable/unit_7_grey" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -434,11 +434,11 @@
                         android:layout_weight="1" >
 
                         <ImageView
-                            android:id="@+id/imgUnit1"
+                            android:id="@+id/imgUnit8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/unit_1_grey" />
+                            android:src="@drawable/unit_8_grey" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -472,7 +472,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/unit_1_grey" />
+                            android:src="@drawable/unit_9_grey" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -506,7 +506,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/unit_1_grey" />
+                            android:src="@drawable/unit_10_grey" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -540,7 +540,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/unit_1_grey" />
+                            android:src="@drawable/unit_11_grey" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -574,7 +574,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/unit_1_grey" />
+                            android:src="@drawable/unit_12_grey" />
                     </FrameLayout>
 
                     <FrameLayout

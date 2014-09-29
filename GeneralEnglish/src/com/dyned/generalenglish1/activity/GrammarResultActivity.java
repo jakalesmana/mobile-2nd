@@ -1,35 +1,46 @@
 package com.dyned.generalenglish1.activity;
 
+import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dyned.generalenglish1.R;
+import com.dyned.generalenglish1.app.GEApplication;
 import com.dyned.generalenglish1.composite.ResultAdapter;
 import com.dyned.generalenglish1.manager.LessonManager;
 import com.dyned.generalenglish1.manager.UserPreference;
 import com.dyned.generalenglish1.model.GEAnswerPacket;
 import com.dyned.generalenglish1.model.GELesson;
 import com.dyned.generalenglish1.model.GEMainMenu;
+import com.dyned.generalenglish1.model.GERecordHistory;
 import com.dyned.generalenglish1.tools.InternetConnectionListener;
 import com.dyned.generalenglish1.tools.PostInternetTask;
 import com.dyned.generalenglish1.util.URLAddress;
 
 public class GrammarResultActivity extends BaseActivity {
-
+	private Handler handler = new Handler();
+	private ProgressDialog dialog;
+	
 	private LessonManager lessonMgr;
+	private UserPreference pref;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_grammar_result);
 		lessonMgr = LessonManager.getInstance();
+		pref = UserPreference.getInstance(this);
 		
 		GEMainMenu unit = lessonMgr.getCurrentUnit();
 		GELesson lesson = lessonMgr.getCurrentLesson();
@@ -64,16 +75,24 @@ public class GrammarResultActivity extends BaseActivity {
 	
 	private void submitLessonResultToServer() {
 		GEAnswerPacket answers = UserPreference.getInstance(this).getCurrentAnswerPacket();
-		System.out.println("answers to submit: ");
-		System.out.println("completed time: " + answers.getCompletedTime());
-		System.out.println("listening total: " + answers.getListeningTotal());
-		System.out.println("comp attemp: " + answers.getComprehentionAttempted());
-		System.out.println("comp correct: " + answers.getComprehentionCorrect());
-		System.out.println("grammar attemp: " + answers.getGrammarAttempted());
-		System.out.println("grammar correct: " + answers.getGrammarCorrect());
+		System.out.println("ggg answers to submit: ");
+		System.out.println("gggconversation: " + answers.getConversation());
+		System.out.println("gggunit: " + answers.getUnit());
+		System.out.println("ggglesson: " + answers.getLesson());
+		System.out.println("gggcompleted time: " + answers.getCompletedTime());
+		System.out.println("ggglistening total: " + answers.getListeningTotal());
+		System.out.println("gggcomp attemp: " + answers.getComprehentionAttempted());
+		System.out.println("gggcomp correct: " + answers.getComprehentionCorrect());
+		System.out.println("ggggrammar attemp: " + answers.getGrammarAttempted());
+		System.out.println("ggggrammar correct: " + answers.getGrammarCorrect());
 		
 		PostInternetTask task = new PostInternetTask(this, new InternetConnectionListener() {			
-			public void onStart() {				
+			public void onStart() {	
+				handler.post(new Runnable() {
+					public void run() {
+				    	dialog = ProgressDialog.show(GrammarResultActivity.this, "", "Loading..");				
+					}
+				});
 			}
 			
 			public void onDone(String str) {
@@ -81,19 +100,21 @@ public class GrammarResultActivity extends BaseActivity {
 				try {
 					JSONObject result = new JSONObject(str);
 					if (result.getBoolean("status")) {
-//						loadLatestHistory();
+						loadLatestHistory();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
+					dialog.dismiss();
 				}
 			}
 			
 			public void onConnectionError(String message) {
-				
+				dialog.dismiss();
+				Toast.makeText(GrammarResultActivity.this, message + ", try again later.", Toast.LENGTH_SHORT).show();
 			}
 		});
-		task.addPair("app_key", URLAddress.DUMMY_APP_KEY);
-		task.addPair("conversation", answers.getCoversation());
+		task.addPair("app_key", pref.getAppKey());
+		task.addPair("conversation", answers.getConversation());
 		task.addPair("unit", answers.getUnit());
 		task.addPair("lesson", answers.getLesson());
 		task.addPair("completed_time", "" + answers.getCompletedTime());
@@ -104,6 +125,39 @@ public class GrammarResultActivity extends BaseActivity {
 		task.addPair("grammar_correct", "" + answers.getGrammarCorrect());
 		task.execute(URLAddress.URL_CONVERSATION_UPDATE);
 		
+	}
+	
+	private void loadLatestHistory() {
+		PostInternetTask task = new PostInternetTask(this, new InternetConnectionListener() {			
+			public void onStart() {				
+			}
+			
+			public void onDone(String str) {
+				try {
+					JSONObject result = new JSONObject(str);
+					boolean status = result.getBoolean("status");
+					if (status) {
+						System.out.println("response update histroy: " + str);
+						List<GERecordHistory> historyList = GERecordHistory.parseHistory(str);
+						
+						UserPreference.getInstance(GrammarResultActivity.this).setHistory(historyList);
+					}
+					dialog.dismiss();
+				} catch (JSONException e) {
+					e.printStackTrace();
+					dialog.dismiss();
+				}
+			}
+			
+			public void onConnectionError(String message) {
+				dialog.dismiss();
+				Toast.makeText(GrammarResultActivity.this, message + ", try again later.", Toast.LENGTH_SHORT).show();
+			}
+		});
+		task.addPair("app_key", pref.getAppKey());
+		task.addPair("conversation", GEApplication.app);
+		
+		task.execute(URLAddress.URL_CONVERSATION_HISTORY);
 	}
 	
 	@Override

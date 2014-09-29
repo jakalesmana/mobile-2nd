@@ -49,7 +49,7 @@ public class GEAnswerPacket implements Serializable {
 		grammarAttempted = 0;
 	}
 
-	public String getCoversation() {
+	public String getConversation() {
 		return coversation;
 	}
 

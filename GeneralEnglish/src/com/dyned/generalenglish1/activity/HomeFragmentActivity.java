@@ -1,55 +1,85 @@
 package com.dyned.generalenglish1.activity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewTreeObserver.OnScrollChangedListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout.LayoutParams;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.dyned.generalenglish1.R;
 import com.dyned.generalenglish1.app.GEApplication;
+import com.dyned.generalenglish1.manager.UserPreference;
 import com.dyned.generalenglish1.model.GE;
-import com.dyned.generalenglish1.model.GELesson;
 import com.dyned.generalenglish1.model.GEMainMenu;
-import com.dyned.generalenglish1.model.GEQuestion;
+import com.dyned.generalenglish1.model.GERecordHistory;
 
 public class HomeFragmentActivity extends BaseActivity {
 
+	private PopupWindow mPopupWindow;
+	
 	private float density;
+	private ImageView imgUnit1;
+	private ImageView imgUnit2;
+	private ImageView imgUnit3;
+	private ImageView imgUnit4;
+	private ImageView imgUnit5;
+	private ImageView imgUnit6;
+	private ImageView imgUnit7;
+	private ImageView imgUnit8;
+	private ImageView imgUnit9;
+	private ImageView imgUnit10;
+	private ImageView imgUnit11;
+	private ImageView imgUnit12;
+	private List<GEMainMenu> menus;
+	private List<Integer> openedIds; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home_activity);
 		enabeBackMenu();
+		openedIds = new ArrayList<Integer>();
 		
 		density = getResources().getDisplayMetrics().density;
 		
 //		initLeftMenu();
 
 		GE ge = GEApplication.getGEContent();
-		System.out.println("GE app name: " + ge.getAppName());
-		final List<GEMainMenu> menus = ge.getListMenu();
-		for (GEMainMenu geMainMenu : menus) {
-			System.out.println("GE app menu: " + geMainMenu.getTitle());
-			List<GELesson> lessons = geMainMenu.getListLesson();
-			for (GELesson geLesson : lessons) {
-				System.out.println("GE app lesson: " + geLesson.getTitle());
-				
-				System.out.println("GE app comprehension " + geLesson.getComprehension().getTitle());
-				List<GEQuestion> questions = geLesson.getComprehension().getListQuestion();
-				for (GEQuestion geQuestion : questions) {
-					System.out.println("GE app comp question: " + geQuestion.getQuestion());
-				}
-				
-				System.out.println("GE app grammar " + geLesson.getGrammar().getType());
-				List<GEQuestion> questionss = geLesson.getGrammar().getListQuestion();
-				for (GEQuestion geQuestion : questionss) {
-					System.out.println("GE app grammar question: " + geQuestion.getQuestion());
-				}
-			}
-		}
+		menus = ge.getListMenu();
+		
+//		for (GEMainMenu geMainMenu : menus) {
+//			System.out.println("GE app menu: " + geMainMenu.getTitle());
+//			List<GELesson> lessons = geMainMenu.getListLesson();
+//			for (GELesson geLesson : lessons) {
+//				System.out.println("GE app lesson: " + geLesson.getTitle());
+//				
+//				System.out.println("GE app comprehension " + geLesson.getComprehension().getTitle());
+//				List<GEQuestion> questions = geLesson.getComprehension().getListQuestion();
+//				for (GEQuestion geQuestion : questions) {
+//					System.out.println("GE app comp question: " + geQuestion.getQuestion());
+//				}
+//				
+//				System.out.println("GE app grammar " + geLesson.getGrammar().getType());
+//				List<GEQuestion> questionss = geLesson.getGrammar().getListQuestion();
+//				for (GEQuestion geQuestion : questionss) {
+//					System.out.println("GE app grammar question: " + geQuestion.getQuestion());
+//				}
+//			}
+//		}
 		
 //		ListView lvHome = (ListView) findViewById(R.id.lvHome);
 //		lvHome.setAdapter(new UnitAdapter(this, menus));
@@ -74,7 +104,74 @@ public class HomeFragmentActivity extends BaseActivity {
 //		System.out.println("packet answer: " + p1.getComprehentionAttempted() + " - " + p1.getComprehentionCorrect());
 	
 	
+		imgUnit1 = (ImageView) findViewById(R.id.imgUnit1);
+		imgUnit2 = (ImageView) findViewById(R.id.imgUnit2);
+		imgUnit3 = (ImageView) findViewById(R.id.imgUnit3);
+		imgUnit4 = (ImageView) findViewById(R.id.imgUnit4);
+		imgUnit5 = (ImageView) findViewById(R.id.imgUnit5);
+		imgUnit6 = (ImageView) findViewById(R.id.imgUnit6);
+		imgUnit7 = (ImageView) findViewById(R.id.imgUnit7);
+		imgUnit8 = (ImageView) findViewById(R.id.imgUnit8);
+		imgUnit9 = (ImageView) findViewById(R.id.imgUnit9);
+		imgUnit10 = (ImageView) findViewById(R.id.imgUnit10);
+		imgUnit11= (ImageView) findViewById(R.id.imgUnit11);
+		imgUnit12 = (ImageView) findViewById(R.id.imgUnit12);
 		
+		imgUnit1.setOnClickListener(menuClickHandler);
+		imgUnit2.setOnClickListener(menuClickHandler);
+		imgUnit3.setOnClickListener(menuClickHandler);
+		imgUnit4.setOnClickListener(menuClickHandler);
+		imgUnit5.setOnClickListener(menuClickHandler);
+		imgUnit6.setOnClickListener(menuClickHandler);
+		imgUnit7.setOnClickListener(menuClickHandler);
+		imgUnit8.setOnClickListener(menuClickHandler);
+		imgUnit9.setOnClickListener(menuClickHandler);
+		imgUnit10.setOnClickListener(menuClickHandler);
+		imgUnit11.setOnClickListener(menuClickHandler);
+		imgUnit12.setOnClickListener(menuClickHandler);
+		
+		imgUnit1.setTag("0");
+		imgUnit2.setTag("1");
+		imgUnit3.setTag("2");
+		imgUnit4.setTag("3");
+		imgUnit5.setTag("4");
+		imgUnit6.setTag("5");
+		imgUnit7.setTag("6");
+		imgUnit8.setTag("7");
+		imgUnit9.setTag("8");
+		imgUnit10.setTag("9");
+		imgUnit11.setTag("10");
+		imgUnit12.setTag("11");
+		
+		ScrollView svHome = (ScrollView) findViewById(R.id.svHome);
+		svHome.getViewTreeObserver().addOnScrollChangedListener(new OnScrollChangedListener() {
+			public void onScrollChanged() {
+				if (mPopupWindow != null) {
+					mPopupWindow.dismiss();
+				}
+			}
+		});
+	}
+	
+	private OnClickListener menuClickHandler = new OnClickListener() {
+		public void onClick(View v) {
+			int pos = Integer.parseInt((String) v.getTag());
+			
+			if (isAvailable(pos)) {
+				showMenuTitle(v, menus.get(pos), pos);
+			}
+			
+		}
+	};
+	
+	private boolean isAvailable(int pos){
+		boolean available = false;
+		for (int i = 0; i < openedIds.size(); i++) {
+			if (pos == (openedIds.get(i) - 1)) {
+				return true;
+			}
+		}
+		return available;
 	}
 	
 	@Override
@@ -94,6 +191,76 @@ public class HomeFragmentActivity extends BaseActivity {
 		}
 		handleLayout(var);
 	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		handleStatus();
+	}
+
+	private void handleStatus() {
+		openedIds.clear();
+		List<GERecordHistory> histories = UserPreference.getInstance(this).getHistory();
+		
+		for (int i = 0; i < histories.size(); i++) {
+			String historyUnit = histories.get(i).getUnit();
+			
+			System.out.println("xxx unit: " + historyUnit);
+			
+			for (int j = 1; j < histories.size() + 1; j++) {
+				if (historyUnit.substring(1).equals("" + j)) {
+					if (j == 1) {
+						imgUnit1.setImageResource(R.drawable.unit_1);
+						openedIds.add(1);
+					}
+					if (j == 2) {
+						imgUnit2.setImageResource(R.drawable.unit_2);
+						openedIds.add(2);
+					}
+					if (j == 3) {
+						imgUnit3.setImageResource(R.drawable.unit_3);
+						openedIds.add(3);
+					}
+					if (j == 4) {
+						imgUnit4.setImageResource(R.drawable.unit_4);
+						openedIds.add(4);
+					}
+					if (j == 5) {
+						imgUnit5.setImageResource(R.drawable.unit_5);
+						openedIds.add(5);
+					}
+					if (j == 6) {
+						imgUnit6.setImageResource(R.drawable.unit_6);
+						openedIds.add(6);
+					}
+					if (j == 7) {
+						imgUnit7.setImageResource(R.drawable.unit_7);
+						openedIds.add(7);
+					}
+					if (j == 8) {
+						imgUnit8.setImageResource(R.drawable.unit_8);
+						openedIds.add(8);
+					}
+					if (j == 9) {
+						imgUnit9.setImageResource(R.drawable.unit_9);
+						openedIds.add(9);
+					}
+					if (j == 10) {
+						imgUnit10.setImageResource(R.drawable.unit_10);
+						openedIds.add(10);
+					}
+					if (j == 11) {
+						imgUnit11.setImageResource(R.drawable.unit_11);
+						openedIds.add(11);
+					}
+					if (j == 12) {
+						imgUnit12.setImageResource(R.drawable.unit_12);
+						openedIds.add(12);
+					}
+				}
+			}
+		}
+	}
 
 	private void handleLayout(int var) {
 		FrameLayout layoutPipe1 = (FrameLayout) findViewById(R.id.layoutPipe1);
@@ -106,12 +273,8 @@ public class HomeFragmentActivity extends BaseActivity {
 		
 		int x1 = imageWidth + imgUnit1.getLeft() + layoutImgUnit1.getLeft() - (imageWidth / 8);		
 		int yLine1 = imageWidth + layoutImgUnit1.getTop() - (imageWidth / 4);
-				
-		System.out.println("xxx right: " + imgUnit2.getRight());
-		System.out.println("xxx layout left: " + layoutImgUnit2.getLeft());
-		
+						
 		int x2 = imgUnit2.getRight() + layoutImgUnit2.getLeft() - (imageWidth * 3 / 4);
-//		int x2 = imageWidth + imgUnit2.getRight() + layoutImgUnit1.getLeft() - (imageWidth / 4);
 		int y2 = yLine1 + (imageWidth / 2);
 		
 		int lineWidth = x2 - x1;
@@ -193,5 +356,63 @@ public class HomeFragmentActivity extends BaseActivity {
 		params11.topMargin = yLine11;
 		layoutPipe11.setLayoutParams(params11);
 		
+	}
+	
+	@SuppressLint("InflateParams")
+	@SuppressWarnings("deprecation")
+	private void showMenuTitle(View imageMenu, final GEMainMenu menu, int pos)
+	{
+		
+		if(mPopupWindow != null) mPopupWindow.dismiss();
+		
+		View v = LayoutInflater.from(this).inflate(R.layout.popup_menu, null);
+		mPopupWindow = new PopupWindow(v, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		mPopupWindow.setBackgroundDrawable(new BitmapDrawable(getResources()));
+		mPopupWindow.setOutsideTouchable(false);
+		TextView unit = (TextView) v.findViewById(R.id.txtUnit);
+		TextView title = (TextView) v.findViewById(R.id.txtTitle);		
+		unit.setText(menu.getTitle().split(":")[0]);
+		title.setText(menu.getDesc());
+		
+		Rect result = new Rect();
+		Paint paint = new Paint();
+		paint.getTextBounds(menu.getDesc(), 0, menu.getDesc().length(), result);
+		int height = (int) (result.height() + (density * 20));
+		int width = (int) ((result.width() * 3 / 2) * density);
+				
+		int xOffset = 0;
+		if(((pos + 1) % 2) == 0){
+			//popup left of image
+			xOffset = 0 - width;
+		} else {
+			//popup right of image
+			xOffset = imageMenu.getWidth() + (int)(5 * density);
+		}
+		
+		if (!mPopupWindow.isShowing())
+		{
+			mPopupWindow.showAsDropDown(imageMenu, xOffset, 0 - (imageMenu.getWidth() / 2) - (height));
+		}
+		else
+		{
+			mPopupWindow.dismiss();
+			mPopupWindow.showAsDropDown(imageMenu, xOffset, 0 - (imageMenu.getWidth() / 2) - (height));
+		}
+		
+		v.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(HomeFragmentActivity.this, UnitActivity.class);
+				i.putExtra("GEunit", menu);
+				startActivity(i);
+				mPopupWindow.dismiss();
+			}
+		});
+
+	}
+	
+	@Override
+	public void finish() {
+		super.finish();
+		overridePendingTransition(0, R.anim.activity_close_scale);
 	}
 }

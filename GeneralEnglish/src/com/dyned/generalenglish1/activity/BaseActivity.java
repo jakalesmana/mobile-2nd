@@ -1,5 +1,6 @@
 package com.dyned.generalenglish1.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,10 +23,12 @@ public class BaseActivity extends SherlockFragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		overridePendingTransition(R.anim.activity_enter, R.anim.activity_leave);
+		overridePendingTransition(R.anim.activity_open_translate,R.anim.activity_close_scale);
+		
 		setupActionBar();
 	}
 	
+	@SuppressLint("InflateParams")
 	private void setupActionBar(){
 		LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = inflater.inflate(R.layout.header, null);
@@ -64,6 +67,6 @@ public class BaseActivity extends SherlockFragmentActivity {
 	@Override
 	public void finish() {
 		super.finish();
-//		overridePendingTransition(R.anim.activity_leave, R.anim.activity_enter);
+		overridePendingTransition(R.anim.activity_open_scale,R.anim.activity_close_translate);
 	};
 }

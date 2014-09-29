@@ -14,6 +14,7 @@ import javax.net.ssl.SSLSession;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.dyned.generalenglish1.app.GEApplication;
 import com.dyned.generalenglish1.util.AppUtil;
 import com.dyned.generalenglish1.util.URLAddress;
 
@@ -69,9 +70,9 @@ public class InternetTask extends AsyncTask<String, Integer, String> {
 				
 				connection.setRequestProperty("X-API-KEY", URLAddress.API_KEY);
 				connection.setRequestProperty("X-APP-VERSION ", AppUtil.getVersionName(context));
-				connection.setRequestProperty("X-APP-NAME ", AppUtil.getApplicationName(context));
+				connection.setRequestProperty("X-APP-NAME ", GEApplication.appName);
 				connection.setRequestProperty("X-DEVICE-MODEL", AppUtil.getDeviceName());
-				connection.setRequestProperty("X-DEVICE-OS", AppUtil.getOsversion());
+				connection.setRequestProperty("X-DEVICE-OS", "Android " + AppUtil.getOsversion());
 				
 				connection.setConnectTimeout(30000);
 				connection.setDoInput(true);
@@ -111,9 +112,9 @@ public class InternetTask extends AsyncTask<String, Integer, String> {
 				
 				connection.setRequestProperty("X-API-KEY", URLAddress.API_KEY);
 				connection.setRequestProperty("X-APP-VERSION ", AppUtil.getVersionName(context));
-				connection.setRequestProperty("X-APP-NAME ", AppUtil.getApplicationName(context));
+				connection.setRequestProperty("X-APP-NAME ", GEApplication.appName);
 				connection.setRequestProperty("X-DEVICE-MODEL", AppUtil.getDeviceName());
-				connection.setRequestProperty("X-DEVICE-OS", AppUtil.getOsversion());
+				connection.setRequestProperty("X-DEVICE-OS", "Android " + AppUtil.getOsversion());
 				
 				connection.setConnectTimeout(30000);
 				connection.setDoInput(true);

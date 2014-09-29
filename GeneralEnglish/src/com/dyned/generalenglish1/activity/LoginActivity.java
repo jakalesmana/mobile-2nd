@@ -1,5 +1,7 @@
 package com.dyned.generalenglish1.activity;
 
+import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,7 +16,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dyned.generalenglish1.R;
+import com.dyned.generalenglish1.app.GEApplication;
 import com.dyned.generalenglish1.manager.UserPreference;
+import com.dyned.generalenglish1.model.GERecordHistory;
 import com.dyned.generalenglish1.model.Profile;
 import com.dyned.generalenglish1.tools.InternetConnectionListener;
 import com.dyned.generalenglish1.tools.PostInternetTask;
@@ -89,10 +93,11 @@ public class LoginActivity extends BaseActivity {
 						pref.setName(me.getName());
 						pref.setAvatar(me.getAvatar());
 						
-						Toast.makeText(LoginActivity.this, "Welcome: " + pref.getName() + " - " + pref.getAppKey(), Toast.LENGTH_SHORT).show();
-						goToHome();
+						loadLatestHistory();
+					} else {
+						dialog.dismiss();
 					}
-					dialog.dismiss();
+					
 				} catch (JSONException e) {
 					e.printStackTrace();
 					Toast.makeText(LoginActivity.this, "Failed to sign in.", Toast.LENGTH_SHORT).show();
@@ -108,5 +113,41 @@ public class LoginActivity extends BaseActivity {
 		task.addPair("password", password);
 		
 		task.execute(URLAddress.URL_LOGIN);
+	}
+	
+	private void loadLatestHistory() {
+		PostInternetTask task = new PostInternetTask(this, new InternetConnectionListener() {			
+			public void onStart() {				
+			}
+			
+			public void onDone(String str) {
+				try {
+					JSONObject result = new JSONObject(str);
+					boolean status = result.getBoolean("status");
+					if (status) {
+						System.out.println("response update histroy: " + str);
+						List<GERecordHistory> historyList = GERecordHistory.parseHistory(str);
+						
+						pref.setHistory(historyList);
+						dialog.dismiss();
+						goToHome();
+					} else {
+						dialog.dismiss();
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+					dialog.dismiss();
+				}
+			}
+			
+			public void onConnectionError(String message) {
+				dialog.dismiss();
+				Toast.makeText(LoginActivity.this, message + ", try again later.", Toast.LENGTH_SHORT).show();
+			}
+		});
+		task.addPair("app_key", pref.getAppKey());
+		task.addPair("conversation", GEApplication.app);
+		
+		task.execute(URLAddress.URL_CONVERSATION_HISTORY);
 	}
 }

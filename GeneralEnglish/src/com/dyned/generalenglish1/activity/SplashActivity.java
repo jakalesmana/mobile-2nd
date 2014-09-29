@@ -19,11 +19,21 @@ import com.dyned.generalenglish1.util.URLAddress;
 
 public class SplashActivity extends SherlockActivity {
 
+	private UserPreference pref;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
-		loadLatestHistory();
+		pref = UserPreference.getInstance(this);
+		
+		if (pref.isLoggedIn()) {
+			loadLatestHistory();
+		} else {
+			startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+			finish();
+		}
+		
 	}
 	
 	private void loadLatestHistory() {
@@ -39,8 +49,8 @@ public class SplashActivity extends SherlockActivity {
 						System.out.println("response update histroy: " + str);
 						List<GERecordHistory> historyList = GERecordHistory.parseHistory(str);
 						
-						UserPreference.getInstance(SplashActivity.this).setHistory(historyList);
-						startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+						pref.setHistory(historyList);
+						startActivity(new Intent(SplashActivity.this, HomeFragmentActivity.class));
 						finish();
 					}
 				} catch (JSONException e) {
@@ -51,7 +61,7 @@ public class SplashActivity extends SherlockActivity {
 			public void onConnectionError(String message) {
 			}
 		});
-		task.addPair("app_key", URLAddress.DUMMY_APP_KEY);
+		task.addPair("app_key", pref.getAppKey());
 		task.addPair("conversation", GEApplication.app);
 		
 		task.execute(URLAddress.URL_CONVERSATION_HISTORY);

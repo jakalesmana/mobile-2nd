@@ -45,7 +45,7 @@ public class UserPreference {
 		if (currentPacket.getUnit().equals(newPacket.getUnit()) && 
 				currentPacket.getLesson().equals(newPacket.getLesson())) {
 
-			totalPacket.setCoversation(newPacket.getCoversation());
+			totalPacket.setCoversation(newPacket.getConversation());
 			totalPacket.setUnit(newPacket.getUnit());
 			totalPacket.setLesson(newPacket.getLesson());
 			totalPacket.setListeningTotal(currentPacket.getListeningTotal() + newPacket.getListeningTotal());
