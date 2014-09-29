@@ -12,6 +12,7 @@
 
     </FrameLayout>
 
+    <!-- 
     <ListView
         android:id="@+id/lvAnswer"
         android:layout_width="match_parent"
@@ -19,5 +20,12 @@
         android:layout_gravity="bottom" >
 
     </ListView>
+ 	-->
 
+    <FrameLayout
+        android:id="@+id/layoutOption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </FrameLayout>
+ 	
 </LinearLayout>

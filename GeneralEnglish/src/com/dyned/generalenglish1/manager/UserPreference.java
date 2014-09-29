@@ -27,8 +27,6 @@ public class UserPreference {
 	private final String GCM_ID = "gcm_id";
 	private final String LOGGEN_IN = "logged_in";
 	private final String NAME = "name";
-	private final String ROLE = "role";
-	private final String ROLE_TITLE = "role_title";
 	private final String AVATAR = "avatar";
 	
 	public static UserPreference getInstance(Context c){

@@ -10,7 +10,8 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:src="@drawable/slide_menu_icn" />
 
     <TextView
         android:id="@+id/txtHeaderTitle"
