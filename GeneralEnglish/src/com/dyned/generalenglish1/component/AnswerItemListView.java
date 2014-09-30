@@ -21,13 +21,15 @@ public class AnswerItemListView extends LinearLayout {
 	private AnswerHandler answerHandler;
 	private List<String> options;
 	private List<View> items;
+	private float density;
 	
-	public AnswerItemListView(Context context, List<String> list, AnswerHandler onAnswer) {
+	public AnswerItemListView(Context context, int spaceLeft, List<String> list, AnswerHandler onAnswer) {
 		super(context);
 		options = list;
 		items = new ArrayList<View>();
 		this.answerHandler = onAnswer;
 		setOrientation(LinearLayout.VERTICAL);
+		density = getContext().getResources().getDisplayMetrics().density;
 		
 		for (int i = 0; i < options.size(); i++) {
 			OptionItem item = new OptionItem(context, options.get(i), i);
@@ -35,7 +37,20 @@ public class AnswerItemListView extends LinearLayout {
 			item.setOnClickListener(clickHandler);
 			items.add(item);
 			addView(item);
+			
+			item.getLayoutParams().height = (int) ((spaceLeft / 3) - (10 * density));
+			
+			addDivider();
 		}		
+	}
+	
+	private void addDivider() {
+		FrameLayout divider = new FrameLayout(getContext());
+		FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, (int) (1 * density));
+		params.setMargins((int) (10 * density), 0, (int) (10 * density), 0);
+		divider.setLayoutParams(params);
+		divider.setBackgroundColor(getContext().getResources().getColor(R.color.GEGrey));
+		addView(divider);
 	}
 	
 	private OnClickListener clickHandler = new OnClickListener() {		

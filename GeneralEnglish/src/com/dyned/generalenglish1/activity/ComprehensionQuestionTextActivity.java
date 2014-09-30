@@ -10,6 +10,7 @@ import com.dyned.generalenglish1.component.AnswerItemListView.AnswerHandler;
 import com.dyned.generalenglish1.manager.LessonManager;
 import com.dyned.generalenglish1.model.GEQuestion;
 import com.dyned.generalenglish1.model.SerializedNameValuePair;
+import com.dyned.generalenglish1.util.AppUtil;
 
 public class ComprehensionQuestionTextActivity extends BaseActivity {
 	
@@ -26,26 +27,20 @@ public class ComprehensionQuestionTextActivity extends BaseActivity {
 		question = (GEQuestion) getIntent().getSerializableExtra("GEquestion");
 		last = getIntent().getBooleanExtra("lastQuestion", false);
 				
+		FrameLayout layoutTitle = (FrameLayout) findViewById(R.id.layoutTitle);
 		TextView txtQuestion = (TextView) findViewById(R.id.txtQuestion);
-//		ListView lvAnswer = (ListView) findViewById(R.id.lvAnswer);
 		
 		txtQuestion.setText(question.getQuestion());
 		
-		FrameLayout layoutOption = (FrameLayout)findViewById(R.id.layoutOption);
-		layoutOption.addView(new AnswerItemListView(this, question.getOptions(), clickListener));
+		int appHeight = AppUtil.GetAppScreenHeight(this);
+		int titleHeight = appHeight / 9 * 4;
+		int optionsHeight = appHeight / 9 * 5;
 		
-//		lvAnswer.setAdapter(new AnswerAdapter(this, question.getOptions()));
-//		
-//		lvAnswer.setOnItemClickListener(new OnItemClickListener() {
-//			public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
-//				SerializedNameValuePair answer = new SerializedNameValuePair(question.getAnswer(), question.getOptions().get(pos));
-//				if (last) {
-//					lessonMgr.doneComprehension(ComprehensionQuestionTextActivity.this, answer);
-//				} else {
-//					lessonMgr.doneAnswerComprehension(ComprehensionQuestionTextActivity.this, answer);
-//				}
-//			}
-//		});
+		layoutTitle.getLayoutParams().height = titleHeight;
+		
+		FrameLayout layoutOption = (FrameLayout)findViewById(R.id.layoutOption);
+		layoutOption.addView(new AnswerItemListView(this, optionsHeight, question.getOptions(), clickListener));
+
 	}
 	
 	private AnswerHandler clickListener = new AnswerHandler() {		

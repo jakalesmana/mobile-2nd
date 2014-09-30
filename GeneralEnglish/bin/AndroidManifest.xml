@@ -38,18 +38,18 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".activity.LoginActivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".activity.HomeFragmentActivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".activity.UnitActivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".activity.ComprehensionQuestionTextActivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".activity.ComprehensionQuestionAudioTextActivity" android:configChanges="orientation|screenSize"/>       
-        <activity android:name=".activity.GrammarSentenceBuilderActivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".activity.GrammarQuestionTextActivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".activity.ListeningActivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".activity.ComprehensionTextResultActivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".activity.ComprehensionAudioResultActivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".activity.GrammarResultActivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".activity.LeftMenuActivity" android:configChanges="orientation|screenSize" android:theme="@style/Theme.Transparent"/>
+        <activity android:name=".activity.LoginActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait" />
+        <activity android:name=".activity.HomeFragmentActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.UnitActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ComprehensionQuestionTextActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ComprehensionQuestionAudioTextActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>       
+        <activity android:name=".activity.GrammarSentenceBuilderActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GrammarQuestionTextActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ListeningActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ComprehensionTextResultActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ComprehensionAudioResultActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GrammarResultActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.LeftMenuActivity" android:configChanges="orientation|screenSize" android:theme="@style/Theme.Transparent" android:screenOrientation="portrait"/>
         
         
         <!-- GCM RECEIVER -->

@@ -51,7 +51,7 @@ public class HomeFragmentActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home_activity);
-		enabeBackMenu();
+		enableBackMenu();
 		openedIds = new ArrayList<Integer>();
 		
 		density = getResources().getDisplayMetrics().density;

@@ -10,6 +10,7 @@ import com.dyned.generalenglish1.component.AudioPlayer;
 import com.dyned.generalenglish1.manager.LessonManager;
 import com.dyned.generalenglish1.model.GEQuestion;
 import com.dyned.generalenglish1.model.SerializedNameValuePair;
+import com.dyned.generalenglish1.util.AppUtil;
 
 public class ComprehensionQuestionAudioTextActivity extends BaseActivity {
 	
@@ -28,24 +29,15 @@ public class ComprehensionQuestionAudioTextActivity extends BaseActivity {
 		question = (GEQuestion) getIntent().getSerializableExtra("GEquestion");
 		last = getIntent().getBooleanExtra("lastQuestion", false);
 				
+		int appHeight = AppUtil.GetAppScreenHeight(this);
+		int audioHeight = appHeight / 9 * 4;
+		int optionsHeight = appHeight / 9 * 5;
+		
 		FrameLayout layoutAudio = (FrameLayout) findViewById(R.id.layoutAudio);
-		
-//		ListView lvAnswer = (ListView) findViewById(R.id.lvAnswer);
-//		
-//		lvAnswer.setAdapter(new AnswerAdapter(this, question.getOptions()));
-//		lvAnswer.setOnItemClickListener(new OnItemClickListener() {
-//			public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
-//				SerializedNameValuePair answer = new SerializedNameValuePair(question.getAnswer(), question.getOptions().get(pos));
-//				if (last) {
-//					lessonMgr.doneComprehension(ComprehensionQuestionAudioTextActivity.this, answer);
-//				} else {
-//					lessonMgr.doneAnswerComprehension(ComprehensionQuestionAudioTextActivity.this, answer);
-//				}
-//			}
-//		});
-		
 		FrameLayout layoutOption = (FrameLayout)findViewById(R.id.layoutOption);
-		layoutOption.addView(new AnswerItemListView(this, question.getOptions(), clickListener));
+		layoutOption.addView(new AnswerItemListView(this, optionsHeight, question.getOptions(), clickListener));
+		
+		layoutAudio.getLayoutParams().height = audioHeight;
 		
 		ap = new AudioPlayer(this, question.getQuestion().split("\\|")[0].split("\\.")[0], null);
 		layoutAudio.addView(ap);

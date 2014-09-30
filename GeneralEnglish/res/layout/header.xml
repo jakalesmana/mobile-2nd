@@ -3,25 +3,31 @@
     android:layout_height="fill_parent"
     android:background="#157af7" >
 
-    <ImageView
-        android:id="@+id/imgBack"
+    <FrameLayout
+        android:id="@+id/layoutBack"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:padding="5dp"
-        android:src="@drawable/slide_menu_icn" />
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_transparent_selectable"
+        android:padding="10dp" >
+
+        <ImageView
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            
+            android:src="@drawable/back_icn" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/txtHeaderTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/imgAction"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:layout_toRightOf="@+id/imgBack"
+        android:layout_toLeftOf="@+id/imgAction"
         android:gravity="center"
         android:text="General English"
         android:textAppearance="?android:attr/textAppearanceMedium"

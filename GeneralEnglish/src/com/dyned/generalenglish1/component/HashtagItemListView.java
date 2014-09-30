@@ -53,7 +53,7 @@ public class HashtagItemListView extends LinearLayout {
 				hashtag.setText(tag);
 				hashtag.setTextColor(Color.WHITE);
 				hashtag.setLayoutParams(buttonParams);
-				hashtag.setBackgroundResource(R.drawable.bg_btn_green_noborder);
+				hashtag.setBackgroundResource(R.drawable.bg_btn_grey_noborder);
 				
 				hashtag.setOnClickListener(new OnClickListener() {
 					public void onClick(View v) {

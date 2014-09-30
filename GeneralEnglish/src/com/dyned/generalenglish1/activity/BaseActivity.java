@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class BaseActivity extends SherlockFragmentActivity {
 	private ActionBar actionBar;
 	private TextView txtHeaderTitle;
 	private boolean backMenu;
+	private FrameLayout imgMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +36,11 @@ public class BaseActivity extends SherlockFragmentActivity {
 		View v = inflater.inflate(R.layout.header, null);
 		
 		actionBar = getSupportActionBar();
-//		actionBar.setDisplayShowTitleEnabled(false);
-//		actionBar.setDisplayShowHomeEnabled(true);
-//		actionBar.setHomeButtonEnabled(true);
 		actionBar.setCustomView(v);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		txtHeaderTitle = (TextView) v.findViewById(R.id.txtHeaderTitle);
 		
-		ImageView imgMenu = (ImageView) findViewById(R.id.imgBack);
+		imgMenu = (FrameLayout) findViewById(R.id.layoutBack);
 		imgMenu.setOnClickListener(clickHandler);
 	}
 	
@@ -49,8 +48,9 @@ public class BaseActivity extends SherlockFragmentActivity {
 		txtHeaderTitle.setText(title);
 	}
 	
-	protected void enabeBackMenu(){
+	protected void enableBackMenu(){
 		backMenu = true;
+		((ImageView)imgMenu.getChildAt(0)).setImageResource(R.drawable.slide_menu_icn);
 	}
 	
 	private OnClickListener clickHandler = new OnClickListener() {		
@@ -59,7 +59,7 @@ public class BaseActivity extends SherlockFragmentActivity {
 				Intent i = new Intent(BaseActivity.this, LeftMenuActivity.class);
 				startActivity(i);
 			} else {
-				
+				finish();
 			}
 		}
 	};

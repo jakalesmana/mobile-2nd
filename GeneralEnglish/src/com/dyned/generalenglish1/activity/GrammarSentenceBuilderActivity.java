@@ -25,6 +25,7 @@ public class GrammarSentenceBuilderActivity extends BaseActivity {
 	private GEQuestion question;
 	private List<String> optionsToBuild;
 	private LessonManager lessonMgr;
+	private String defaultAnswer = "____________________";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class GrammarSentenceBuilderActivity extends BaseActivity {
 	}
 
 	private void initBuilderItem() {
-		txtAnswer.setText("");
+		txtAnswer.setText(defaultAnswer);
 		layoutItem.removeAllViews();
 		HashtagItemListView itemList = new HashtagItemListView(this, optionsToBuild, mhandler);
 		layoutItem.addView(itemList);
@@ -72,6 +73,9 @@ public class GrammarSentenceBuilderActivity extends BaseActivity {
 	
 	private OptionsChoosenHandler mhandler = new OptionsChoosenHandler() {
 		public void onChoosen(String word) {
+			if (txtAnswer.getText().toString().equals(defaultAnswer)) {
+				txtAnswer.setText("");
+			}
 			txtAnswer.append(word + " ");
 		}
 	};

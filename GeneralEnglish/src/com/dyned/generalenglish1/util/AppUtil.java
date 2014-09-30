@@ -21,6 +21,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -28,6 +29,16 @@ import android.view.inputmethod.InputMethodManager;
 public class AppUtil {
 
 	private static List<Activity> activities = new ArrayList<Activity>();
+	
+	public static int GetActionBarHeight(Context c){
+		TypedValue tv = new TypedValue();
+		if (c.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true))
+		{
+			int height = TypedValue.complexToDimensionPixelSize(tv.data, c.getResources().getDisplayMetrics());
+		    return height;
+		}
+		return 0;
+	}
 	
 	public static int GetScreenWidth(Context context) {
 		DisplayMetrics dm = new DisplayMetrics();
@@ -41,6 +52,10 @@ public class AppUtil {
 		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 		wm.getDefaultDisplay().getMetrics(dm);
 		return dm.heightPixels;
+	}
+	
+	public static int GetAppScreenHeight(Context context) {
+		return GetScreenHeight(context) - GetActionBarHeight(context);
 	}
 	
 	public static boolean IsSDCARDMounted(){
