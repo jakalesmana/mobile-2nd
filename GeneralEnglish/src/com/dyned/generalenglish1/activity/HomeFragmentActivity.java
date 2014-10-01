@@ -210,52 +210,100 @@ public class HomeFragmentActivity extends BaseActivity {
 			for (int j = 1; j < histories.size() + 1; j++) {
 				if (historyUnit.substring(1).equals("" + j)) {
 					if (j == 1) {
-						imgUnit1.setImageResource(R.drawable.unit_1);
-						openedIds.add(1);
+						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
+							
+						} else {
+							imgUnit1.setImageResource(R.drawable.unit_1);
+							openedIds.add(1);
+						}
 					}
 					if (j == 2) {
-						imgUnit2.setImageResource(R.drawable.unit_2);
-						openedIds.add(2);
+						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
+							
+						} else {
+							imgUnit2.setImageResource(R.drawable.unit_2);
+							openedIds.add(2);
+						}
 					}
 					if (j == 3) {
-						imgUnit3.setImageResource(R.drawable.unit_3);
-						openedIds.add(3);
+						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
+							
+						} else {
+							imgUnit3.setImageResource(R.drawable.unit_3);
+							openedIds.add(3);
+						}
 					}
 					if (j == 4) {
-						imgUnit4.setImageResource(R.drawable.unit_4);
-						openedIds.add(4);
+						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
+							
+						} else {
+							imgUnit4.setImageResource(R.drawable.unit_4);
+							openedIds.add(4);
+						}
 					}
 					if (j == 5) {
-						imgUnit5.setImageResource(R.drawable.unit_5);
-						openedIds.add(5);
+						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
+							
+						} else {
+							imgUnit5.setImageResource(R.drawable.unit_5);
+							openedIds.add(5);
+						}
 					}
 					if (j == 6) {
-						imgUnit6.setImageResource(R.drawable.unit_6);
-						openedIds.add(6);
+						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
+							
+						} else {
+							imgUnit6.setImageResource(R.drawable.unit_6);
+							openedIds.add(6);
+						}
 					}
 					if (j == 7) {
-						imgUnit7.setImageResource(R.drawable.unit_7);
-						openedIds.add(7);
+						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
+							
+						} else {
+							imgUnit7.setImageResource(R.drawable.unit_7);
+							openedIds.add(7);
+						}
 					}
 					if (j == 8) {
-						imgUnit8.setImageResource(R.drawable.unit_8);
-						openedIds.add(8);
+						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
+							
+						} else {
+							imgUnit8.setImageResource(R.drawable.unit_8);
+							openedIds.add(8);
+						}
 					}
 					if (j == 9) {
-						imgUnit9.setImageResource(R.drawable.unit_9);
-						openedIds.add(9);
+						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
+							
+						} else {
+							imgUnit9.setImageResource(R.drawable.unit_9);
+							openedIds.add(9);
+						}
 					}
 					if (j == 10) {
-						imgUnit10.setImageResource(R.drawable.unit_10);
-						openedIds.add(10);
+						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
+							
+						} else {
+							imgUnit10.setImageResource(R.drawable.unit_10);
+							openedIds.add(10);
+						}
 					}
 					if (j == 11) {
-						imgUnit11.setImageResource(R.drawable.unit_11);
-						openedIds.add(11);
+						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
+							
+						} else {
+							imgUnit11.setImageResource(R.drawable.unit_11);
+							openedIds.add(11);
+						}
 					}
 					if (j == 12) {
-						imgUnit12.setImageResource(R.drawable.unit_12);
-						openedIds.add(12);
+						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
+							
+						} else {
+							imgUnit12.setImageResource(R.drawable.unit_12);
+							openedIds.add(12);
+						}
 					}
 				}
 			}

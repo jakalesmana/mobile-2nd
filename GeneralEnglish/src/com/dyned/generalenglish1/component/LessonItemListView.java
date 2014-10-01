@@ -97,7 +97,10 @@ public class LessonItemListView extends LinearLayout {
 			for (int j = 0; j < listRecordLesson.size(); j++) {
 				if (currentUnit.getCode().equals(unitCode) && 
 						lesson.getCode().equals(listRecordLesson.get(j).getLessonCode())) {
-					return true;
+					if (!listRecordLesson.get(j).getStatus().equals("waiting")) {
+						return true;
+					}
+					
 				}
 			}
 		}
