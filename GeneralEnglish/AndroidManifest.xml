@@ -50,7 +50,8 @@
         <activity android:name=".activity.ComprehensionAudioResultActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
         <activity android:name=".activity.GrammarResultActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
         <activity android:name=".activity.LeftMenuActivity" android:configChanges="orientation|screenSize" android:theme="@style/Theme.Transparent" android:screenOrientation="portrait"/>
-        
+        <activity android:name=".activity.ProfileActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.RegisterActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
         
         <!-- GCM RECEIVER -->
         <receiver android:name=".gcm.GCMReceiver" 

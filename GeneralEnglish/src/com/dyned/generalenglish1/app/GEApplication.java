@@ -1,9 +1,16 @@
 package com.dyned.generalenglish1.app;
 
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.Context;
+import android.os.Build;
 
 import com.dyned.generalenglish1.model.GE;
 import com.dyned.generalenglish1.util.AppUtil;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 public class GEApplication extends Application {
 	
@@ -18,9 +25,30 @@ public class GEApplication extends Application {
 		super.onCreate();
 		String appData = AppUtil.ReadTextFileFromAssets(this, "app_content.json");
 		mainAppContent = GE.parseGE(appData);
+		
+		initImageLoader(getApplicationContext());
 	}
 	
 	public static GE getGEContent(){
 		return mainAppContent;
+	}
+	
+	public static void initImageLoader(Context context) {
+		int memoryCacheSize;
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
+			int memClass = ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();
+			memoryCacheSize = (memClass / 10) * 1024 * 1024; // 1/8 of app memory limit 
+		} else {
+			memoryCacheSize = 1 * 1024 * 1024;
+		}
+
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+			.threadPriority(Thread.NORM_PRIORITY - 2)
+			.memoryCacheSize(memoryCacheSize)
+			.discCacheFileNameGenerator(new Md5FileNameGenerator())
+			.tasksProcessingOrder(QueueProcessingType.FIFO)
+			.enableLogging()
+			.build();
+		ImageLoader.getInstance().init(config);
 	}
 }
