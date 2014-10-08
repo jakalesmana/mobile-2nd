@@ -216,17 +216,27 @@ public class LeftMenuActivity extends Activity {
 		if (v.getId() == R.id.imgMenu1) { //profile
 			loadCountryAndLanguage();
 		} else if (v.getId() == R.id.imgMenu2) { //study tips
-			
+			Intent i = new Intent(this, StudyTipsActivity.class);
+			startActivity(i);
+			finishing();
 		} else if (v.getId() == R.id.imgMenu3) { // badges
-			
+			Intent i = new Intent(this, BadgeActivity.class);
+			startActivity(i);
+			finishing();
 		} else if (v.getId() == R.id.imgMenu4) { // apps
 			
 		} else if (v.getId() == R.id.imgMenu5) { // notification
 			
 		} else if (v.getId() == R.id.imgMenu6) { // support
-			
+			Intent i = new Intent(this, WebViewerActivity.class);
+			i.putExtra("url_menu", URLAddress.SUPPORT_URL);
+			startActivity(i);
+			finishing();
 		} else if (v.getId() == R.id.imgMenu7) { // track record
-			
+			Intent i = new Intent(this, WebViewerActivity.class);
+			i.putExtra("url_menu", URLAddress.ACCOUNT_URL + "?app_key=" + UserPreference.getInstance(this).getAppKey());
+			startActivity(i);
+			finishing();
 		} else if (v.getId() == R.id.imgMenu8) { //logout
 			
 		}

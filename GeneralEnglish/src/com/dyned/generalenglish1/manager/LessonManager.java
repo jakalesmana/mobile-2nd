@@ -25,6 +25,8 @@ import com.dyned.generalenglish1.model.SerializedNameValuePair;
 public class LessonManager {
 
 	private static LessonManager instance;
+
+	private static ArrayList<Integer> listOpenedIds;
 	
 	private List<Activity> listComprehensionPage;
 	private List<Activity> listGrammarPage;
@@ -309,4 +311,16 @@ public class LessonManager {
 		}
 		return true;
 	}
+	
+	public void setOpenedUnits(List<Integer> openedIds){
+		listOpenedIds = new ArrayList<Integer>(openedIds);
+	}
+	
+	public List<Integer> getOpenedUnits(){
+		if (listOpenedIds == null) {
+			listOpenedIds = new ArrayList<Integer>();
+		}
+		return listOpenedIds;
+	}
+	
 }

@@ -13,13 +13,16 @@ import org.apache.http.conn.util.InetAddressUtils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
+import android.os.Parcelable;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
@@ -236,6 +239,44 @@ public class AppUtil {
 		} catch (IOException e) {
 			return null;
 		}
+	}
+	
+	public static void showChooserIntent(Context aContext, String aSubject,
+			String aContent) {
+		List<Intent> targetedShareIntents = findShareClients(aContext,
+				aSubject, aContent);
+		Intent chooserIntent = Intent.createChooser(
+				targetedShareIntents.remove(0), "Select app to share");
+		chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS,
+				targetedShareIntents.toArray(new Parcelable[] {}));
+		aContext.startActivity(chooserIntent);
+	}
+	
+	private static List<Intent> findShareClients(Context aContext,
+			String subject, String content) {
+		List<Intent> targetIntents = new ArrayList<Intent>();
+		Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+		shareIntent.setType("text/plain");
+
+		final PackageManager packageManager = aContext.getPackageManager();
+		List<ResolveInfo> list = packageManager.queryIntentActivities(
+				shareIntent, PackageManager.MATCH_DEFAULT_ONLY);
+		if (null != list) {
+			for (ResolveInfo resolveInfo : list) {
+				String p = resolveInfo.activityInfo.packageName;
+				if (p != null) {
+					Intent intent = new Intent(Intent.ACTION_SEND);
+					intent.setType("text/plain");
+					intent.setPackage(p);
+					// intent.putExtra(android.content.Intent.EXTRA_SUBJECT,
+					// subject);
+					intent.putExtra(Intent.EXTRA_TEXT, subject + ":\r\n"
+							+ content);
+					targetIntents.add(intent);
+				}
+			}
+		}
+		return targetIntents;
 	}
 	
 }

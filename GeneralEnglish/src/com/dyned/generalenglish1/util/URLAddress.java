@@ -3,7 +3,8 @@ package com.dyned.generalenglish1.util;
 public class URLAddress {
 
 	public static final String DEVELOPMENT_BASE_URL = "http://mdc.pistarlabs.net/0.1.0/index.php";
-	public static final String DYNED_DOMAIN = "https://mobile.dyned.com/index.php";
+//	public static final String DYNED_DOMAIN = "https://mobile.dyned.com/index.php";
+	public static final String CMS_URL = "http://cms.pistarlabs.net/index.php";
 	
 	public static final String API_KEY = "c31b32364ce19ca8fcd150a417ecce58";
 	public static final String URL_LOGIN = DEVELOPMENT_BASE_URL + "/api/oauth/login";
@@ -16,6 +17,8 @@ public class URLAddress {
 	public static final String COUNTRY_URL = DEVELOPMENT_BASE_URL + "/api/helper/country_list";
 	public static final String LANGUAGE_URL = DEVELOPMENT_BASE_URL + "/api/helper/language_list";
 	public static final String PROFILE_URL = DEVELOPMENT_BASE_URL + "/api/account/profile";
-	
+	public static final String SUPPORT_URL = DEVELOPMENT_BASE_URL + "/contact?mode=webview";
+	public static final String ACCOUNT_URL = DEVELOPMENT_BASE_URL + "/account";
+	public static final String STUDY_TIPS_URL = CMS_URL + "/api/study_tips";
 	
 }

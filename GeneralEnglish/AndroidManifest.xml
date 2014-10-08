@@ -54,6 +54,9 @@
         <activity android:name=".activity.GrammarResultStatusActivity" android:configChanges="orientation|screenSize" android:theme="@style/Theme.Transparent" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ProfileActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
         <activity android:name=".activity.RegisterActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.WebViewerActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BadgeActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.StudyTipsActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
         
         <!-- GCM RECEIVER -->
         <receiver android:name=".gcm.GCMReceiver" 

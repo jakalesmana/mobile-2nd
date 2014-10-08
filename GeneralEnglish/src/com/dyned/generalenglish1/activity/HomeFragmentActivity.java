@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.dyned.generalenglish1.R;
 import com.dyned.generalenglish1.app.GEApplication;
+import com.dyned.generalenglish1.manager.LessonManager;
 import com.dyned.generalenglish1.manager.UserPreference;
 import com.dyned.generalenglish1.model.GE;
 import com.dyned.generalenglish1.model.GEMainMenu;
@@ -308,6 +309,8 @@ public class HomeFragmentActivity extends BaseActivity {
 				}
 			}
 		}
+		
+		LessonManager.getInstance().setOpenedUnits(openedIds);
 	}
 
 	private void handleLayout(int var) {
