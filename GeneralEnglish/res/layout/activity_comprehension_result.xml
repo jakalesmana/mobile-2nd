@@ -11,8 +11,7 @@
         android:layout_gravity="center_horizontal"
         android:padding="10dp"
         android:text="Unit Title"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/txtLesson"
@@ -20,12 +19,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
-        android:text="Lesson Title" />
+        android:text="Lesson Title"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/lvResult"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1" >
 
     </ListView>
@@ -42,14 +44,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="Try Again" />
+            android:background="@drawable/bg_btn_green_noborder"
+            android:text="     Try Again     "
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/btnGrammar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="Grammar" />
+            android:background="@drawable/bg_btn_blue_noborder"
+            android:text="      Grammar      "
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 

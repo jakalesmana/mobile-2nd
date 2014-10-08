@@ -39,6 +39,8 @@ public class GrammarResultActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_grammar_result);
+		disableMenu();
+		
 		lessonMgr = LessonManager.getInstance();
 		pref = UserPreference.getInstance(this);
 		
@@ -70,7 +72,10 @@ public class GrammarResultActivity extends BaseActivity {
 			}
 		});
 		
-		submitLessonResultToServer();
+		if (LessonManager.isAllAnswerCorrect(lessonMgr.getCurrentGrammarAnswer())) {
+			submitLessonResultToServer();
+		}
+		
 	}
 	
 	private void submitLessonResultToServer() {

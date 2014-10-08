@@ -2,12 +2,13 @@ package com.dyned.generalenglish1.composite;
 
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dyned.generalenglish1.R;
@@ -47,21 +48,22 @@ public class ResultAdapter extends BaseAdapter {
 	}
 
 	public static class ViewHolder {
-		TextView status, question, answer;
+		TextView question, answer;
 		int position;
+		ImageView status;
 	}
 
-	@Override
+	@SuppressLint("InflateParams")
 	public View getView(int position, View convertView, ViewGroup viewGroup) {
 		ViewHolder holder;
 
 		if (convertView == null) {
 			holder = new ViewHolder();
 
-			convertView = li.inflate(R.layout.result_item, null);
+			convertView = li.inflate(R.layout.result_item, viewGroup, false);
 			holder.question = (TextView) convertView.findViewById(R.id.txtQuestion);
 			holder.answer = (TextView) convertView.findViewById(R.id.txtAnswer);
-			holder.status = (TextView) convertView.findViewById(R.id.txtStatus);
+			holder.status = (ImageView) convertView.findViewById(R.id.imgStatus);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -78,19 +80,12 @@ public class ResultAdapter extends BaseAdapter {
 		holder.question.setText(question);
 		holder.answer.setText(((SerializedNameValuePair)listAnswer.get(position)).getValue());
 		
-		String status;
-		int color;
 		if (((SerializedNameValuePair)listAnswer.get(position)).getValue()
 				.equals(((SerializedNameValuePair)listAnswer.get(position)).getName())) {
-			status = "correct";
-			color = Color.BLUE;
+			holder.status.setImageResource(R.drawable.ic_true);
 		} else {
-			status = "wrong";
-			color = Color.RED;
+			holder.status.setImageResource(R.drawable.ic_false);
 		}
-		
-		holder.status.setText(status);
-		holder.status.setTextColor(color);
 		
 		return convertView;
 	}

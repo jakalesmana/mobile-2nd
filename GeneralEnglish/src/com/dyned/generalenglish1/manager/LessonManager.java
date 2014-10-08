@@ -7,12 +7,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.dyned.generalenglish1.activity.ComprehensionAudioResultActivity;
 import com.dyned.generalenglish1.activity.ComprehensionQuestionAudioTextActivity;
 import com.dyned.generalenglish1.activity.ComprehensionQuestionTextActivity;
-import com.dyned.generalenglish1.activity.ComprehensionTextResultActivity;
+import com.dyned.generalenglish1.activity.ComprehentionResultStatusActivity;
 import com.dyned.generalenglish1.activity.GrammarQuestionTextActivity;
-import com.dyned.generalenglish1.activity.GrammarResultActivity;
+import com.dyned.generalenglish1.activity.GrammarResultStatusActivity;
 import com.dyned.generalenglish1.activity.GrammarSentenceBuilderActivity;
 import com.dyned.generalenglish1.activity.ListeningActivity;
 import com.dyned.generalenglish1.app.GEApplication;
@@ -140,13 +139,10 @@ public class LessonManager {
 		//add answer packet history
 		addComprehensionAnswerPacket(page);
 		
-		if (currentComprehension.getType().equals("textonly")) {
-			Intent i = new Intent(page, ComprehensionTextResultActivity.class);
-			page.startActivity(i);
-		} else if (currentComprehension.getType().equals("audioandtext")){
-			Intent i = new Intent(page, ComprehensionAudioResultActivity.class);
-			page.startActivity(i);
-		}
+		Intent in = new Intent(page, ComprehentionResultStatusActivity.class);
+		in.putExtra("isPass", isAllAnswerCorrect(getCurrentComprehensionAnswer()));
+		in.putExtra("type", currentComprehension.getType());
+		page.startActivity(in);
 	}
 
 	private void addComprehensionAnswerPacket(Activity c) {
@@ -254,8 +250,9 @@ public class LessonManager {
 		//add answer packet history
 		addGrammarAnswerPacket(page);
 		
-		Intent i = new Intent(page, GrammarResultActivity.class);
-		page.startActivity(i);
+		Intent in = new Intent(page, GrammarResultStatusActivity.class);
+		in.putExtra("isPass", isAllAnswerCorrect(getCurrentGrammarAnswer()));
+		page.startActivity(in);
 	}
 	
 	public void doneAnswerGrammar(Activity page, SerializedNameValuePair answer) {
@@ -302,5 +299,14 @@ public class LessonManager {
 		closeAllGrammar();
 		if(comprehensionResultPage != null) comprehensionResultPage.finish();
 		closeAllComprehension();
+	}
+	
+	public static boolean isAllAnswerCorrect(List<SerializedNameValuePair> answers){
+		for (int i = 0; i < answers.size(); i++) {
+			if (!answers.get(i).getName().equals(answers.get(i).getValue())) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

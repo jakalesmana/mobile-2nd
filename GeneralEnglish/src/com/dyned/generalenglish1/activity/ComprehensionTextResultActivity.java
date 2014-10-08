@@ -3,6 +3,7 @@ package com.dyned.generalenglish1.activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,6 +22,8 @@ public class ComprehensionTextResultActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_comprehension_result);
+		disableMenu();
+		
 		lessonMgr = LessonManager.getInstance();
 		
 		GEMainMenu unit = lessonMgr.getCurrentUnit();
@@ -43,11 +46,20 @@ public class ComprehensionTextResultActivity extends BaseActivity {
 			}
 		});
 		
-		btnGrammar.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				lessonMgr.prepareGrammar(ComprehensionTextResultActivity.this);
-			}
-		});
+		if (LessonManager.isAllAnswerCorrect(lessonMgr.getCurrentComprehensionAnswer())) {
+			btnGrammar.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					lessonMgr.prepareGrammar(ComprehensionTextResultActivity.this);
+				}
+			});
+		} else {
+			btnGrammar.setOnClickListener(null);
+			btnGrammar.setEnabled(false);
+			AlphaAnimation alpha = new AlphaAnimation(0.2f, 0.2f);
+			alpha.setDuration(0);
+			alpha.setFillAfter(true); 
+			btnGrammar.startAnimation(alpha);
+		}
 	}
 	
 	@Override

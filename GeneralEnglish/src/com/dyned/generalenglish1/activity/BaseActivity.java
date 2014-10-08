@@ -53,6 +53,10 @@ public class BaseActivity extends SherlockFragmentActivity {
 		((ImageView)imgMenu.getChildAt(0)).setImageResource(R.drawable.slide_menu_icn);
 	}
 	
+	protected void disableMenu(){
+		imgMenu.setVisibility(View.GONE);
+	}
+	
 	private OnClickListener clickHandler = new OnClickListener() {		
 		public void onClick(View v) {
 			if (backMenu) {

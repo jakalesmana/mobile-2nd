@@ -24,7 +24,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:src="@drawable/account_icon"
+                    android:src="@drawable/account_icn"
                     android:visibility="invisible" />
 
                 <ImageView
@@ -32,14 +32,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:src="@drawable/study_tips_icn"
+                    android:src="@drawable/studytips_icn"
                     android:visibility="invisible" />
                 <ImageView
                     android:id="@+id/imgMenu3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:src="@drawable/badges_icn"
+                    android:src="@drawable/badge_icn"
                     android:visibility="invisible" />
                 <ImageView
                     android:id="@+id/imgMenu4"
@@ -53,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:src="@drawable/notif_icn"
+                    android:src="@drawable/notification_icn"
                     android:visibility="invisible" />
                 <ImageView
                     android:id="@+id/imgMenu6"
@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:src="@drawable/track_progress"
+                    android:src="@drawable/trackprogress_icn"
                     android:visibility="invisible" />
                 <ImageView
                     android:id="@+id/imgMenu8"
