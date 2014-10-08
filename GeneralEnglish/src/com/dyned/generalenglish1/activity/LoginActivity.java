@@ -5,14 +5,18 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dyned.generalenglish1.R;
@@ -33,6 +37,8 @@ public class LoginActivity extends BaseActivity {
 	private EditText txtPassword;
 	private Button btnSubmit;
 	private UserPreference pref;
+	private TextView txtSignUp;
+	private TextView txtForgotPassword;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,8 @@ public class LoginActivity extends BaseActivity {
 		txtEmail = (EditText) findViewById(R.id.txtEmail);
 		txtPassword = (EditText) findViewById(R.id.txtPassword);
 		btnSubmit = (Button) findViewById(R.id.btnSubmit);
+		txtSignUp = (TextView) findViewById(R.id.txtSignUp);
+		txtForgotPassword = (TextView) findViewById(R.id.txtForgotPassword);
 		
 		txtEmail.setText("jakaputralesmana@gmail.com");
 		txtPassword.setText("jaka");
@@ -54,9 +62,44 @@ public class LoginActivity extends BaseActivity {
 			}
 		});
 		
+		txtSignUp.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+				startActivity(i);
+			}
+		});
+		
+		txtForgotPassword.setOnClickListener(new OnClickListener() {			
+			public void onClick(View v) {
+				showForgotPopup();
+			}
+		});
+		
 		if (pref.isLoggedIn()) {
 			goToHome();
 		}
+	}
+	
+	private void showForgotPopup() {
+		LayoutInflater li = LayoutInflater.from(this);
+		View promptsView = li.inflate(R.layout.popup_forgot_password, null);
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+		alertDialogBuilder.setView(promptsView);
+
+		final EditText txtEmail = (EditText) promptsView.findViewById(R.id.txtEmail);
+
+		alertDialogBuilder.setCancelable(false)
+			.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+			    	
+			}})
+			.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				dialog.dismiss();
+			}});
+
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
 	}
 	
 	private void goToHome() {
