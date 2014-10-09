@@ -57,6 +57,7 @@
         <activity android:name=".activity.WebViewerActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
         <activity android:name=".activity.BadgeActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
         <activity android:name=".activity.StudyTipsActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.NotificationActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
         
         <!-- GCM RECEIVER -->
         <receiver android:name=".gcm.GCMReceiver" 

@@ -226,7 +226,9 @@ public class LeftMenuActivity extends Activity {
 		} else if (v.getId() == R.id.imgMenu4) { // apps
 			
 		} else if (v.getId() == R.id.imgMenu5) { // notification
-			
+			Intent i = new Intent(this, NotificationActivity.class);
+			startActivity(i);
+			finishing();
 		} else if (v.getId() == R.id.imgMenu6) { // support
 			Intent i = new Intent(this, WebViewerActivity.class);
 			i.putExtra("url_menu", URLAddress.SUPPORT_URL);
