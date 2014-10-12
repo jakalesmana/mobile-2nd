@@ -1,8 +1,6 @@
 package com.dyned.generalenglish1.activity;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +15,7 @@ import com.dyned.generalenglish1.component.HashtagItemListView.OptionsChoosenHan
 import com.dyned.generalenglish1.manager.LessonManager;
 import com.dyned.generalenglish1.model.GEQuestion;
 import com.dyned.generalenglish1.model.SerializedNameValuePair;
+import com.dyned.generalenglish1.util.StringUtil;
 
 public class GrammarSentenceBuilderActivity extends BaseActivity {
 	
@@ -60,7 +59,7 @@ public class GrammarSentenceBuilderActivity extends BaseActivity {
 			}
 		});
 		
-		optionsToBuild = randomList(question.getOptions());
+		optionsToBuild = StringUtil.randomList(question.getOptions());
 		initBuilderItem();
 	}
 
@@ -79,27 +78,6 @@ public class GrammarSentenceBuilderActivity extends BaseActivity {
 			txtAnswer.append(word + " ");
 		}
 	};
-	
-	private List<String> randomList(List<String> options){
-		int min = 1;
-		int max = question.getOptions().size();
-		
-		List<String> list = new ArrayList<String>(options);
-		
-		String temp2 = list.get(max - 1);
-		list.remove(max - 1);
-		list.add(1, temp2);
-		
-		Random r = new Random();
-		for (int i = 0; i < max; i++) {
-			int rand = r.nextInt(max - min) + min;
-			String temp = list.get(0);
-			list.add(rand, temp);
-			list.remove(0);
-		}
-		
-		return list;
-	}
 	
 	@Override
 	public void finish() {

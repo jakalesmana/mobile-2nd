@@ -188,6 +188,15 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
+
+                        <ImageView
+                            android:id="@+id/imgTime1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|right"
+                            android:src="@drawable/time"
+                            android:visibility="gone" />
+
                     </FrameLayout>
 
                     <FrameLayout
@@ -242,6 +251,15 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
+
+                        <ImageView
+                            android:id="@+id/imgTime2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|left"
+                            android:src="@drawable/time"
+                            android:visibility="gone" />
+
                     </FrameLayout>
                 </LinearLayout>
 
@@ -256,6 +274,15 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
+
+                        <ImageView
+                            android:id="@+id/imgTime3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|right"
+                            android:src="@drawable/time"
+                            android:visibility="gone" />
+
                     </FrameLayout>
 
                     <FrameLayout
@@ -310,6 +337,15 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
+
+                        <ImageView
+                            android:id="@+id/imgTime4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|left"
+                            android:src="@drawable/time"
+                            android:visibility="gone" />
+
                     </FrameLayout>
                 </LinearLayout>
 
@@ -324,6 +360,15 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
+
+                        <ImageView
+                            android:id="@+id/imgTime5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|right"
+                            android:src="@drawable/time"
+                            android:visibility="gone" />
+
                     </FrameLayout>
 
                     <FrameLayout
@@ -378,6 +423,15 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
+
+                        <ImageView
+                            android:id="@+id/imgTime6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|left"
+                            android:src="@drawable/time"
+                            android:visibility="gone" />
+
                     </FrameLayout>
                 </LinearLayout>
 
@@ -392,6 +446,15 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
+
+                        <ImageView
+                            android:id="@+id/imgTime7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|right"
+                            android:src="@drawable/time"
+                            android:visibility="gone" />
+
                     </FrameLayout>
 
                     <FrameLayout
@@ -446,6 +509,15 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
+
+                        <ImageView
+                            android:id="@+id/imgTime8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|left"
+                            android:src="@drawable/time"
+                            android:visibility="gone" />
+
                     </FrameLayout>
                 </LinearLayout>
 
@@ -460,6 +532,15 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
+
+                        <ImageView
+                            android:id="@+id/imgTime9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|right"
+                            android:src="@drawable/time"
+                            android:visibility="gone" />
+
                     </FrameLayout>
 
                     <FrameLayout
@@ -514,6 +595,15 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
+
+                        <ImageView
+                            android:id="@+id/imgTime10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|left"
+                            android:src="@drawable/time"
+                            android:visibility="gone" />
+
                     </FrameLayout>
                 </LinearLayout>
 
@@ -528,6 +618,15 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
+
+                        <ImageView
+                            android:id="@+id/imgTime11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|right"
+                            android:src="@drawable/time"
+                            android:visibility="gone" />
+
                     </FrameLayout>
 
                     <FrameLayout
@@ -582,6 +681,15 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" >
+
+                        <ImageView
+                            android:id="@+id/imgTime12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|left"
+                            android:src="@drawable/time"
+                            android:visibility="gone" />
+
                     </FrameLayout>
                 </LinearLayout>
             </RelativeLayout>

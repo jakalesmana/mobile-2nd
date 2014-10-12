@@ -46,7 +46,31 @@ public class HomeFragmentActivity extends BaseActivity {
 	private ImageView imgUnit11;
 	private ImageView imgUnit12;
 	private List<GEMainMenu> menus;
-	private List<Integer> openedIds; 
+	private List<Integer> openedIds;
+
+	private ImageView imgTime1;
+
+	private ImageView imgTime2;
+
+	private ImageView imgTime3;
+
+	private ImageView imgTime4;
+
+	private ImageView imgTime5;
+
+	private ImageView imgTime6;
+
+	private ImageView imgTime7;
+
+	private ImageView imgTime8;
+
+	private ImageView imgTime9;
+
+	private ImageView imgTime10;
+
+	private ImageView imgTime11;
+
+	private ImageView imgTime12; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +141,19 @@ public class HomeFragmentActivity extends BaseActivity {
 		imgUnit10 = (ImageView) findViewById(R.id.imgUnit10);
 		imgUnit11= (ImageView) findViewById(R.id.imgUnit11);
 		imgUnit12 = (ImageView) findViewById(R.id.imgUnit12);
+		
+		imgTime1 = (ImageView) findViewById(R.id.imgTime1);
+		imgTime2 = (ImageView) findViewById(R.id.imgTime2);
+		imgTime3 = (ImageView) findViewById(R.id.imgTime3);
+		imgTime4 = (ImageView) findViewById(R.id.imgTime4);
+		imgTime5 = (ImageView) findViewById(R.id.imgTime5);
+		imgTime6 = (ImageView) findViewById(R.id.imgTime6);
+		imgTime7 = (ImageView) findViewById(R.id.imgTime7);
+		imgTime8 = (ImageView) findViewById(R.id.imgTime8);
+		imgTime9 = (ImageView) findViewById(R.id.imgTime9);
+		imgTime10 = (ImageView) findViewById(R.id.imgTime10);
+		imgTime11 = (ImageView) findViewById(R.id.imgTime11);
+		imgTime12 = (ImageView) findViewById(R.id.imgTime12);
 		
 		imgUnit1.setOnClickListener(menuClickHandler);
 		imgUnit2.setOnClickListener(menuClickHandler);
@@ -212,7 +249,7 @@ public class HomeFragmentActivity extends BaseActivity {
 				if (historyUnit.substring(1).equals("" + j)) {
 					if (j == 1) {
 						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
-							
+							imgTime1.setVisibility(View.VISIBLE);
 						} else {
 							imgUnit1.setImageResource(R.drawable.unit_1);
 							openedIds.add(1);
@@ -220,7 +257,7 @@ public class HomeFragmentActivity extends BaseActivity {
 					}
 					if (j == 2) {
 						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
-							
+							imgTime2.setVisibility(View.VISIBLE);
 						} else {
 							imgUnit2.setImageResource(R.drawable.unit_2);
 							openedIds.add(2);
@@ -228,7 +265,7 @@ public class HomeFragmentActivity extends BaseActivity {
 					}
 					if (j == 3) {
 						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
-							
+							imgTime3.setVisibility(View.VISIBLE);
 						} else {
 							imgUnit3.setImageResource(R.drawable.unit_3);
 							openedIds.add(3);
@@ -236,7 +273,7 @@ public class HomeFragmentActivity extends BaseActivity {
 					}
 					if (j == 4) {
 						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
-							
+							imgTime4.setVisibility(View.VISIBLE);
 						} else {
 							imgUnit4.setImageResource(R.drawable.unit_4);
 							openedIds.add(4);
@@ -244,7 +281,7 @@ public class HomeFragmentActivity extends BaseActivity {
 					}
 					if (j == 5) {
 						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
-							
+							imgTime5.setVisibility(View.VISIBLE);
 						} else {
 							imgUnit5.setImageResource(R.drawable.unit_5);
 							openedIds.add(5);
@@ -252,7 +289,7 @@ public class HomeFragmentActivity extends BaseActivity {
 					}
 					if (j == 6) {
 						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
-							
+							imgTime6.setVisibility(View.VISIBLE);
 						} else {
 							imgUnit6.setImageResource(R.drawable.unit_6);
 							openedIds.add(6);
@@ -260,7 +297,7 @@ public class HomeFragmentActivity extends BaseActivity {
 					}
 					if (j == 7) {
 						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
-							
+							imgTime7.setVisibility(View.VISIBLE);
 						} else {
 							imgUnit7.setImageResource(R.drawable.unit_7);
 							openedIds.add(7);
@@ -268,7 +305,7 @@ public class HomeFragmentActivity extends BaseActivity {
 					}
 					if (j == 8) {
 						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
-							
+							imgTime8.setVisibility(View.VISIBLE);
 						} else {
 							imgUnit8.setImageResource(R.drawable.unit_8);
 							openedIds.add(8);
@@ -276,7 +313,7 @@ public class HomeFragmentActivity extends BaseActivity {
 					}
 					if (j == 9) {
 						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
-							
+							imgTime9.setVisibility(View.VISIBLE);
 						} else {
 							imgUnit9.setImageResource(R.drawable.unit_9);
 							openedIds.add(9);
@@ -284,7 +321,7 @@ public class HomeFragmentActivity extends BaseActivity {
 					}
 					if (j == 10) {
 						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
-							
+							imgTime10.setVisibility(View.VISIBLE);
 						} else {
 							imgUnit10.setImageResource(R.drawable.unit_10);
 							openedIds.add(10);
@@ -292,7 +329,7 @@ public class HomeFragmentActivity extends BaseActivity {
 					}
 					if (j == 11) {
 						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
-							
+							imgTime11.setVisibility(View.VISIBLE);
 						} else {
 							imgUnit11.setImageResource(R.drawable.unit_11);
 							openedIds.add(11);
@@ -300,7 +337,7 @@ public class HomeFragmentActivity extends BaseActivity {
 					}
 					if (j == 12) {
 						if (histories.get(j-1).getRecords().get(0).getStatus().equals("waiting")) {
-							
+							imgTime12.setVisibility(View.VISIBLE);
 						} else {
 							imgUnit12.setImageResource(R.drawable.unit_12);
 							openedIds.add(12);

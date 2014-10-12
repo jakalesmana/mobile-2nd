@@ -224,7 +224,9 @@ public class LeftMenuActivity extends Activity {
 			startActivity(i);
 			finishing();
 		} else if (v.getId() == R.id.imgMenu4) { // apps
-			
+			Intent i = new Intent(this, ApplicationActivity.class);
+			startActivity(i);
+			finishing();
 		} else if (v.getId() == R.id.imgMenu5) { // notification
 			Intent i = new Intent(this, NotificationActivity.class);
 			startActivity(i);

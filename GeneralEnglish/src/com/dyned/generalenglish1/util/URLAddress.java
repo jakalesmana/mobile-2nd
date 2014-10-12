@@ -20,6 +20,7 @@ public class URLAddress {
 	public static final String SUPPORT_URL = DEVELOPMENT_BASE_URL + "/contact?mode=webview";
 	public static final String ACCOUNT_URL = DEVELOPMENT_BASE_URL + "/account";
 	public static final String STUDY_TIPS_URL = CMS_URL + "/api/study_tips";
+	public static final String APPLICATION_URL = CMS_URL + "/api/applications/os";
 	public static final String NOTIFICATION_URL = DEVELOPMENT_BASE_URL + "/api/notification";
-		
+			
 }

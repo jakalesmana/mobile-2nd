@@ -1,5 +1,7 @@
 package com.dyned.generalenglish1.activity;
 
+import java.util.List;
+
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -11,6 +13,7 @@ import com.dyned.generalenglish1.manager.LessonManager;
 import com.dyned.generalenglish1.model.GEQuestion;
 import com.dyned.generalenglish1.model.SerializedNameValuePair;
 import com.dyned.generalenglish1.util.AppUtil;
+import com.dyned.generalenglish1.util.StringUtil;
 
 public class GrammarQuestionTextActivity extends BaseActivity {
 	
@@ -38,7 +41,9 @@ public class GrammarQuestionTextActivity extends BaseActivity {
 		layoutTitle.getLayoutParams().height = titleHeight;
 		
 		FrameLayout layoutOption = (FrameLayout)findViewById(R.id.layoutOption);
-		layoutOption.addView(new AnswerItemListView(this, optionsHeight, question.getOptions(), clickListener));
+		
+		List<String> randomList = StringUtil.randomList(question.getOptions());
+		layoutOption.addView(new AnswerItemListView(this, optionsHeight, randomList, clickListener));
 		
 	}
 	

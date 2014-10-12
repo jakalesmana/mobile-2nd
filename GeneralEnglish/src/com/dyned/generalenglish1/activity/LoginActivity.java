@@ -5,6 +5,7 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -80,6 +81,7 @@ public class LoginActivity extends BaseActivity {
 		}
 	}
 	
+	@SuppressLint("InflateParams") 
 	private void showForgotPopup() {
 		LayoutInflater li = LayoutInflater.from(this);
 		View promptsView = li.inflate(R.layout.popup_forgot_password, null);
@@ -144,6 +146,7 @@ public class LoginActivity extends BaseActivity {
 				} catch (JSONException e) {
 					e.printStackTrace();
 					Toast.makeText(LoginActivity.this, "Failed to sign in.", Toast.LENGTH_SHORT).show();
+					dialog.dismiss();
 				}
 			}
 			
