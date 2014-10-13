@@ -29,18 +29,27 @@
         android:layout_gravity="center"
         android:layout_toLeftOf="@+id/imgAction"
         android:gravity="center"
-        android:text="General English"
+        android:text="General English 1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/imgAction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:id="@+id/layoutHome"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:padding="5dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_transparent_selectable"
+        android:padding="10dp" >
+
+        <ImageView
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            
+            android:src="@drawable/home_icn" />
+
+    </FrameLayout>
 
 </RelativeLayout>

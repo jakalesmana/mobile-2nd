@@ -14,13 +14,14 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.dyned.generalenglish1.R;
+import com.dyned.generalenglish1.util.AppUtil;
 
 public class BaseActivity extends SherlockFragmentActivity {
 
 	private ActionBar actionBar;
 	private TextView txtHeaderTitle;
 	private boolean backMenu;
-	private FrameLayout imgMenu;
+	private FrameLayout imgMenu, layoutHome;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,9 @@ public class BaseActivity extends SherlockFragmentActivity {
 		
 		imgMenu = (FrameLayout) findViewById(R.id.layoutBack);
 		imgMenu.setOnClickListener(clickHandler);
+		
+		layoutHome = (FrameLayout) findViewById(R.id.layoutHome);
+		layoutHome.setOnClickListener(clickHandler);
 	}
 	
 	protected void setHeaderTitle(String title){
@@ -57,13 +61,21 @@ public class BaseActivity extends SherlockFragmentActivity {
 		imgMenu.setVisibility(View.GONE);
 	}
 	
+	protected void disableHomeButton(){
+		layoutHome.setVisibility(View.GONE);
+	}
+	
 	private OnClickListener clickHandler = new OnClickListener() {		
 		public void onClick(View v) {
-			if (backMenu) {
-				Intent i = new Intent(BaseActivity.this, LeftMenuActivity.class);
-				startActivity(i);
-			} else {
-				finish();
+			if (v == imgMenu) {
+				if (backMenu) {
+					Intent i = new Intent(BaseActivity.this, LeftMenuActivity.class);
+					startActivityForResult(i, 0);
+				} else {
+					finish();
+				}
+			} else if (v == layoutHome) {
+				AppUtil.ClearActivityHistory();
 			}
 		}
 	};
@@ -73,4 +85,23 @@ public class BaseActivity extends SherlockFragmentActivity {
 		super.finish();
 		overridePendingTransition(R.anim.activity_open_scale,R.anim.activity_close_translate);
 	};
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if (requestCode == 0 && resultCode == RESULT_OK) {
+			
+			if(data == null) return;
+				
+			if (data.getBooleanExtra("logout", false)) {
+				Intent intent = new Intent(this, LoginActivity.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); 
+				startActivity(intent);
+				finish();
+			}
+		}
+		
+		
+	}
 }

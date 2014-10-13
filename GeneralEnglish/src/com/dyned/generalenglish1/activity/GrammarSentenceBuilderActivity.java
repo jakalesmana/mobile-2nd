@@ -15,6 +15,7 @@ import com.dyned.generalenglish1.component.HashtagItemListView.OptionsChoosenHan
 import com.dyned.generalenglish1.manager.LessonManager;
 import com.dyned.generalenglish1.model.GEQuestion;
 import com.dyned.generalenglish1.model.SerializedNameValuePair;
+import com.dyned.generalenglish1.util.AppUtil;
 import com.dyned.generalenglish1.util.StringUtil;
 
 public class GrammarSentenceBuilderActivity extends BaseActivity {
@@ -30,6 +31,7 @@ public class GrammarSentenceBuilderActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sentence_builder);
+		AppUtil.AddActivityHistory(this);
 		
 		lessonMgr = LessonManager.getInstance();
 		

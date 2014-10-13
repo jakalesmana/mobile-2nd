@@ -141,6 +141,7 @@ public class AppUtil {
 				activities.get(i).finish();
 			}
 		}
+		activities.clear();
 	}
 	
 	public static String getVersionName(Context ctx) {

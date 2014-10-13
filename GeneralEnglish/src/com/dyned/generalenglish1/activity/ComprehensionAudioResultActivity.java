@@ -13,6 +13,7 @@ import com.dyned.generalenglish1.composite.ResultAdapter;
 import com.dyned.generalenglish1.manager.LessonManager;
 import com.dyned.generalenglish1.model.GELesson;
 import com.dyned.generalenglish1.model.GEMainMenu;
+import com.dyned.generalenglish1.util.AppUtil;
 
 public class ComprehensionAudioResultActivity extends BaseActivity {
 
@@ -22,6 +23,8 @@ public class ComprehensionAudioResultActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_comprehension_result);
+		AppUtil.AddActivityHistory(this);
+		
 		lessonMgr = LessonManager.getInstance();
 		
 		GEMainMenu unit = lessonMgr.getCurrentUnit();

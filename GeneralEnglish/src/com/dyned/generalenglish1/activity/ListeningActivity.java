@@ -34,6 +34,8 @@ public class ListeningActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lesson);
+		AppUtil.AddActivityHistory(this);
+		
 		lessonMgr = LessonManager.getInstance();
 		
 		GELesson lesson = (GELesson) getIntent().getSerializableExtra("GElesson");

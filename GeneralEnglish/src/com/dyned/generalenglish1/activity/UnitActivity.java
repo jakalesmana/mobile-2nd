@@ -26,6 +26,7 @@ public class UnitActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_unit);
+		AppUtil.AddActivityHistory(this);
 		
 		unit = (GEMainMenu) getIntent().getSerializableExtra("GEunit");
 		

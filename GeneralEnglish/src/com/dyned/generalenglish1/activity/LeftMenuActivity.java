@@ -3,7 +3,9 @@ package com.dyned.generalenglish1.activity;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -234,18 +236,73 @@ public class LeftMenuActivity extends Activity {
 		} else if (v.getId() == R.id.imgMenu6) { // support
 			Intent i = new Intent(this, WebViewerActivity.class);
 			i.putExtra("url_menu", URLAddress.SUPPORT_URL);
+			i.putExtra("title", "Contact Us");
 			startActivity(i);
 			finishing();
 		} else if (v.getId() == R.id.imgMenu7) { // track record
 			Intent i = new Intent(this, WebViewerActivity.class);
 			i.putExtra("url_menu", URLAddress.ACCOUNT_URL + "?app_key=" + UserPreference.getInstance(this).getAppKey());
+			i.putExtra("title", "Study Records");
 			startActivity(i);
 			finishing();
 		} else if (v.getId() == R.id.imgMenu8) { //logout
-			
+			showConfirmation();
 		}
 	}
 	
+	private void showConfirmation() {
+		final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+		alertDialog.setTitle("");
+		alertDialog.setMessage("Are you sure you want to logout?");
+				
+		alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				alertDialog.dismiss();
+			}
+		});
+		
+		alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {				
+				doLogout();
+			}
+		});
+		
+		alertDialog.show();
+	}
+	
+	private void doLogout() {
+		PostInternetTask task = new PostInternetTask(this, new InternetConnectionListener() {
+			public void onStart() {
+				handler.post(new Runnable() {
+					public void run() {
+				    	dialog = ProgressDialog.show(LeftMenuActivity.this, "", "Loading..");				
+					}
+				});
+			}
+			
+			public void onDone(String str) {
+				System.out.println("response logout: " + str);
+				
+				UserPreference.getInstance(LeftMenuActivity.this).logout();
+				
+				dialog.dismiss();
+				
+				Intent i = new Intent();
+				i.putExtra("logout", true);
+				setResult(RESULT_OK, i);
+				finish();
+			}
+			
+			@Override
+			public void onConnectionError(String message) {
+				dialog.dismiss();
+				Toast.makeText(LeftMenuActivity.this, message + ", try again later.", Toast.LENGTH_SHORT).show();
+			}
+		});
+		task.addPair("app_key", UserPreference.getInstance(this).getAppKey());
+		task.execute(URLAddress.URL_LOGOUT);
+	}
+
 	private void loadCountryAndLanguage() {
 		InternetTask getTask = new InternetTask(this, new InternetConnectionListener() {
 			public void onStart() {

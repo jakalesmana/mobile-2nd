@@ -45,6 +45,8 @@ public class LoginActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		disableMenu();
+		disableHomeButton();
 		
 		pref = UserPreference.getInstance(LoginActivity.this);
 		
@@ -93,7 +95,7 @@ public class LoginActivity extends BaseActivity {
 		alertDialogBuilder.setCancelable(false)
 			.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,int id) {
-			    	
+			    doForgotPassword(txtEmail.getText().toString());
 			}})
 			.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,int id) {
@@ -107,6 +109,54 @@ public class LoginActivity extends BaseActivity {
 	private void goToHome() {
 		startActivity(new Intent(LoginActivity.this, HomeFragmentActivity.class));
 		finish();
+	}
+	
+	private void doForgotPassword(String email) {
+		PostInternetTask task = new PostInternetTask(this, new InternetConnectionListener() {
+			public void onStart() {
+				handler.post(new Runnable() {
+					public void run() {
+				    	dialog = ProgressDialog.show(LoginActivity.this, "", "Loading..");				
+					}
+				});
+			}
+			
+			public void onDone(String str) {
+				System.out.println("response forgot password: " + str);
+				
+				try {
+					JSONObject obj = new JSONObject(str);
+					boolean status = obj.getBoolean("status");
+					
+					if (status) {
+						if (obj.has("message")) {
+							String message = obj.getString("message");
+							Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+						}
+					} else {
+						if (obj.has("error")) {
+							String error = obj.getString("error");
+							Toast.makeText(LoginActivity.this, error, Toast.LENGTH_SHORT).show();
+						}
+					}
+					
+					dialog.dismiss();
+				} catch (JSONException e) {
+					e.printStackTrace();
+					dialog.dismiss();
+					Toast.makeText(LoginActivity.this, "Loading data failed, try again later.", Toast.LENGTH_SHORT).show();
+				}
+
+			}
+			
+			@Override
+			public void onConnectionError(String message) {
+				dialog.dismiss();
+				Toast.makeText(LoginActivity.this, message + ", try again later.", Toast.LENGTH_SHORT).show();
+			}
+		});
+		task.addPair("email", email);
+		task.execute(URLAddress.URL_FORGOT_PASSWORD);
 	}
 
 	private void doLogin(String email, String password) {

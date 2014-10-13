@@ -22,5 +22,7 @@ public class URLAddress {
 	public static final String STUDY_TIPS_URL = CMS_URL + "/api/study_tips";
 	public static final String APPLICATION_URL = CMS_URL + "/api/applications/os";
 	public static final String NOTIFICATION_URL = DEVELOPMENT_BASE_URL + "/api/notification";
+	public static final String URL_LOGOUT = DEVELOPMENT_BASE_URL + "/api/oauth/logout";
+	public static final String URL_FORGOT_PASSWORD = DEVELOPMENT_BASE_URL + "/api/oauth/forgot_password";	
 			
 }

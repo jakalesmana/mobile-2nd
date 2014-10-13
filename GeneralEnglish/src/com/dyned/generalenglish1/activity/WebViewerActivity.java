@@ -14,6 +14,11 @@ public class WebViewerActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_webviewer);
+		disableHomeButton();
+		
+		String title = getIntent().getStringExtra("title");
+		
+		if(title != null) setHeaderTitle(title);
 		
 		String url = getIntent().getStringExtra("url_menu");
 		

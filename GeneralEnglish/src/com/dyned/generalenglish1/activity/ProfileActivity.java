@@ -87,7 +87,9 @@ public class ProfileActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile);
-
+		disableHomeButton();
+		setHeaderTitle("Profile");
+		
 		imgProfile = (ImageView) findViewById(R.id.imgProfile);
 		txtEmail = (EditText) findViewById(R.id.txtEmail);
 		EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
@@ -172,8 +174,8 @@ public class ProfileActivity extends BaseActivity {
 	
 	private void loadImage(){
 		Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.def_profile);
-		 imgProfile.getLayoutParams().width = bmp.getWidth();
-		 imgProfile.getLayoutParams().height = bmp.getWidth();
+		 imgProfile.getLayoutParams().width = bmp.getWidth() * 3 / 2;
+		 imgProfile.getLayoutParams().height = bmp.getWidth() * 3 / 2;
 		 ImageLoader imageLoader = ImageLoader.getInstance();
 		 
 		 imageLoader.displayImage(profile.getAvatar(), imgProfile,

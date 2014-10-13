@@ -25,6 +25,8 @@ public class GrammarQuestionTextActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_question_text);
+		AppUtil.AddActivityHistory(this);
+		
 		lessonMgr = LessonManager.getInstance();
 		
 		question = (GEQuestion) getIntent().getSerializableExtra("GEquestion");

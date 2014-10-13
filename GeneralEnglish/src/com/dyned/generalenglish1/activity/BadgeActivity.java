@@ -10,6 +10,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.dyned.generalenglish1.R;
+import com.dyned.generalenglish1.app.GEApplication;
 import com.dyned.generalenglish1.composite.BadgeAdapter;
 import com.dyned.generalenglish1.manager.LessonManager;
 import com.dyned.generalenglish1.model.Badge;
@@ -21,6 +22,8 @@ public class BadgeActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_badge);
+		setHeaderTitle("Badges");
+		disableHomeButton();
 		
 		List<Badge> badges = new ArrayList<Badge>();
 		for (int i = 1; i <= 12; i++) {
@@ -50,6 +53,6 @@ public class BadgeActivity extends BaseActivity {
 	}
 	
 	private void showShare(Badge badge) {
-		AppUtil.showChooserIntent(this, "Unit Complete: " + badge.getUnit(), "Unit complete content");
+		AppUtil.showChooserIntent(this, "Unit Completed!", "Yayy! I just completed Unit " + badge.getUnit() + " of " + GEApplication.getGEContent().getAppName() + "!");
 	}
 }

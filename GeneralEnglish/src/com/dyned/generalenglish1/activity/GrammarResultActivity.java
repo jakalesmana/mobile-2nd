@@ -26,6 +26,7 @@ import com.dyned.generalenglish1.model.GEMainMenu;
 import com.dyned.generalenglish1.model.GERecordHistory;
 import com.dyned.generalenglish1.tools.InternetConnectionListener;
 import com.dyned.generalenglish1.tools.PostInternetTask;
+import com.dyned.generalenglish1.util.AppUtil;
 import com.dyned.generalenglish1.util.URLAddress;
 
 public class GrammarResultActivity extends BaseActivity {
@@ -39,6 +40,7 @@ public class GrammarResultActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_grammar_result);
+		AppUtil.AddActivityHistory(this);
 		disableMenu();
 		
 		lessonMgr = LessonManager.getInstance();

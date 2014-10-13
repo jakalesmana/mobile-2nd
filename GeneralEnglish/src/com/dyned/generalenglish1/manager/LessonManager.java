@@ -195,7 +195,7 @@ public class LessonManager {
 		
 		if(currentComprehensionAnswers.size() > 0) currentComprehensionAnswers.remove(currentComprehensionAnswers.size() - 1);
 		
-		if(listComprehensionPage.size() > 0) listComprehensionPage.remove(listComprehensionPage.size() - 1);
+//		if(listComprehensionPage.size() > 0) listComprehensionPage.remove(listComprehensionPage.size() - 1);
 	}
 
 	public void repeatComprehension(Context context) {
@@ -269,7 +269,7 @@ public class LessonManager {
 		
 		if(currentGrammarAnswers.size() > 0) currentGrammarAnswers.remove(currentGrammarAnswers.size() - 1);
 		
-		if(listGrammarPage.size() > 0) listGrammarPage.remove(listGrammarPage.size() - 1);
+//		if(listGrammarPage.size() > 0) listGrammarPage.remove(listGrammarPage.size() - 1);
 	}
 
 	public void repeatGrammar(Activity page) {
@@ -282,16 +282,28 @@ public class LessonManager {
 	}
 	
 	private void closeAllGrammar(){
-		for (int i = listGrammarPage.size() - 1; i >= 0; i--) {
-			listGrammarPage.get(i).finish();
+//		for (int i = listGrammarPage.size() - 1; i >= 0; i--) {
+//			listGrammarPage.get(i).finish();
+//		}
+		
+		for (int i = 0; i < listGrammarPage.size(); i++) {
+			if (listGrammarPage.get(i) != null) {
+				listGrammarPage.get(i).finish();
+			}
 		}
 		
 		listGrammarPage.clear();
 	}
 	
 	private void closeAllComprehension(){
-		for (int i = listComprehensionPage.size() - 1; i >= 0; i--) {
-			listComprehensionPage.get(i).finish();
+//		for (int i = listComprehensionPage.size() - 1; i >= 0; i--) {
+//			listComprehensionPage.get(i).finish();
+//		}
+		
+		for (int i = 0; i < listComprehensionPage.size(); i++) {
+			if (listComprehensionPage.get(i) != null) {
+				listComprehensionPage.get(i).finish();
+			}
 		}
 		
 		listComprehensionPage.clear();

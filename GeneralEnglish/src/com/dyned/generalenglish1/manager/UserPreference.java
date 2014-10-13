@@ -161,4 +161,10 @@ public class UserPreference {
 	public String getAvatar() {
 		return myPref.getString(AVATAR, "");
 	}
+
+	public void logout() {
+		setLoggedIn(false);
+		setAppKey("");
+		setName("");
+	}
 }

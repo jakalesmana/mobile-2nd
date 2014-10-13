@@ -29,6 +29,7 @@ public class RegisterActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
+		disableHomeButton();
 		
 		txtEmail = (EditText)findViewById(R.id.txtEmail);
 		txtPassword = (EditText)findViewById(R.id.txtPassword);
