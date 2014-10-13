@@ -55,6 +55,7 @@ public class ListeningActivity extends BaseActivity {
 		});
 		
 		toggleScript = (TextView) findViewById(R.id.txtViewScript);
+		toggleScript.setEnabled(false);
 		txtScript = (TextView) findViewById(R.id.txtScript);
 		for (int i = 0; i < lesson.getListScript().size(); i++) {
 			txtScript.append(lesson.getListScript().get(i) + "\n\n");
@@ -86,6 +87,9 @@ public class ListeningActivity extends BaseActivity {
 				audioPlaying = false;
 				countTime();
 			}
+		}
+		public void onComplete(){
+			toggleScript.setEnabled(true);
 		}
 	};
 	

@@ -25,6 +25,7 @@ public class AudioPlayer extends FrameLayout {
 		void onPlay();
 		void onPause();
 		void onStop();
+		void onComplete();
 	}
 	
 	private View v;
