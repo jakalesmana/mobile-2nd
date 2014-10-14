@@ -39,7 +39,6 @@ public class SplashActivity extends SherlockActivity {
 			finish();
 		}
 		
-//		startActivity(new Intent(SplashActivity.this, GuideActivity.class));
 	}
 	
 	private void loadLatestHistory() {

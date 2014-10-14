@@ -1,8 +1,5 @@
 package com.dyned.generalenglish1.gcm;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +7,7 @@ import android.content.Intent;
 import com.dyned.generalenglish1.manager.UserPreference;
 import com.dyned.generalenglish1.tools.InternetConnectionListener;
 import com.dyned.generalenglish1.tools.PostInternetTask;
+import com.dyned.generalenglish1.util.URLAddress;
 
 public class MDAGCMRegistrar {
 	private static final String GCM_PROJECT_ID = "51356884072";
@@ -45,21 +43,15 @@ public class MDAGCMRegistrar {
 			
 			public void onDone(String str) {
 				System.out.println("device id registrar: " + str);
-				try {
-					JSONObject obj = new JSONObject(str);
-					if(obj.getBoolean("status")){
-						UserPreference.getInstance(context).setGCMID(deviceId);
-					}
-				} catch (JSONException e) {
-				}
+				
 			}
 
 			@Override
 			public void onConnectionError(String message) {
 			}
 		});
-    	internetTask.addPair("platform", "android");
     	internetTask.addPair("token", deviceId);
-//    	internetTask.execute(URLAddress.SET_DEVICE_ID);
+    	internetTask.addPair("app_key", UserPreference.getInstance(context).getAppKey());
+    	internetTask.execute(URLAddress.SET_DEVICE_TOKEN);
     }
 }

@@ -24,5 +24,6 @@ public class URLAddress {
 	public static final String NOTIFICATION_URL = DEVELOPMENT_BASE_URL + "/api/notification";
 	public static final String URL_LOGOUT = DEVELOPMENT_BASE_URL + "/api/oauth/logout";
 	public static final String URL_FORGOT_PASSWORD = DEVELOPMENT_BASE_URL + "/api/oauth/forgot_password";	
-			
+	public static final String SET_DEVICE_TOKEN = DEVELOPMENT_BASE_URL + "/api/2/device/android_add_token";
+	public static final String URL_CHANGE_PASSWORD = DEVELOPMENT_BASE_URL + "/api/account/update_password";	
 }

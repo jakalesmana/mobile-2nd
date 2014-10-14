@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
 import com.dyned.generalenglish1.R;
+import com.dyned.generalenglish1.manager.UserPreference;
 import com.dyned.generalenglish1.model.GEPushNotification;
 
 public class NotificationUtil {
@@ -30,7 +31,7 @@ public class NotificationUtil {
 	public void show(Context context, GEPushNotification push, Class<?> destClass){
 		Intent notifyIntent = new Intent(context, destClass);
 		PendingIntent pIntent = PendingIntent.getActivity(context, 0, notifyIntent, android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
-		notifyIntent.putExtra("GEData", push);
+		UserPreference.setPushBridge(push);
 		
 	    Notification noti = new NotificationCompat.Builder(context)
 	        .setContentTitle("Unit Unlocked")

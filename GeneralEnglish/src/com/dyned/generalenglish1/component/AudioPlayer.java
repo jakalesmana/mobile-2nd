@@ -145,7 +145,7 @@ public class AudioPlayer extends FrameLayout {
 			player.start();
 			if(listener != null) listener.onPlay();
 			playing = true;
-			btnMedia.setImageResource(android.R.drawable.ic_media_pause);
+			btnMedia.setImageResource(R.drawable.pause_icon);
 			seekUpdation();
 		}
 	}

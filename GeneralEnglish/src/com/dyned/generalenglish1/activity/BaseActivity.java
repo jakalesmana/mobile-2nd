@@ -22,6 +22,7 @@ public class BaseActivity extends SherlockFragmentActivity {
 	private TextView txtHeaderTitle;
 	private boolean backMenu;
 	private FrameLayout imgMenu, layoutHome;
+	private ImageView imgTopLogo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class BaseActivity extends SherlockFragmentActivity {
 		actionBar.setCustomView(v);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		txtHeaderTitle = (TextView) v.findViewById(R.id.txtHeaderTitle);
+		imgTopLogo = (ImageView) v.findViewById(R.id.imgTopLogo);
 		
 		imgMenu = (FrameLayout) findViewById(R.id.layoutBack);
 		imgMenu.setOnClickListener(clickHandler);
@@ -50,6 +52,10 @@ public class BaseActivity extends SherlockFragmentActivity {
 	
 	protected void setHeaderTitle(String title){
 		txtHeaderTitle.setText(title);
+	}
+	
+	protected void enableTopLogo(){
+		imgTopLogo.setVisibility(View.VISIBLE);
 	}
 	
 	protected void enableBackMenu(){

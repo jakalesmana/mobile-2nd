@@ -60,6 +60,8 @@
         <activity android:name=".activity.NotificationActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
         <activity android:name=".activity.GuideActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
         <activity android:name=".activity.ApplicationActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.NotifHandlerActivity" android:configChanges="orientation|screenSize" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.WaitActivity" android:configChanges="orientation|screenSize" android:theme="@style/Theme.Transparent" android:screenOrientation="portrait"/>
         
         <!-- GCM RECEIVER -->
         <receiver android:name=".gcm.GCMReceiver" 

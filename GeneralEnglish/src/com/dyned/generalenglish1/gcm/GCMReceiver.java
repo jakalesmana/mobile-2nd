@@ -27,7 +27,9 @@ public class GCMReceiver extends BroadcastReceiver {
 		if (intent.getAction().equals("com.google.android.c2dm.intent.REGISTRATION")) {
 	        handleRegistration(context, intent);
 	    } else if (intent.getAction().equals("com.google.android.c2dm.intent.RECEIVE")) {
-	        handleMessage(context, intent);
+	    	if (UserPreference.getInstance(context).isLoggedIn()) {
+	    		handleMessage(context, intent);
+			}
 	    }
 	}
 
@@ -57,7 +59,7 @@ public class GCMReceiver extends BroadcastReceiver {
 	    	Log.i("C2DM", "unregistered");
 	    } else if (registration != null) {
 	    	System.out.println("gcm id: " + registration);
-	    	MDAGCMRegistrar.sendDeviceIdToServer(context, registration);
+	    	UserPreference.getInstance(context).setGCMID(registration);
 	    }
 	}
 	

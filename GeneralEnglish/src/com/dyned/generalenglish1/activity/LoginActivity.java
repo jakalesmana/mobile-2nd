@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.dyned.generalenglish1.R;
 import com.dyned.generalenglish1.app.GEApplication;
+import com.dyned.generalenglish1.gcm.MDAGCMRegistrar;
 import com.dyned.generalenglish1.manager.UserPreference;
 import com.dyned.generalenglish1.model.GERecordHistory;
 import com.dyned.generalenglish1.model.Profile;
@@ -47,6 +48,7 @@ public class LoginActivity extends BaseActivity {
 		setContentView(R.layout.activity_login);
 		disableMenu();
 		disableHomeButton();
+		enableTopLogo();
 		
 		pref = UserPreference.getInstance(LoginActivity.this);
 		
@@ -189,6 +191,7 @@ public class LoginActivity extends BaseActivity {
 						pref.setAvatar(me.getAvatar());
 						
 						loadLatestHistory();
+						MDAGCMRegistrar.sendDeviceIdToServer(LoginActivity.this, pref.getGCMID());
 					} else {
 						dialog.dismiss();
 					}
@@ -226,7 +229,14 @@ public class LoginActivity extends BaseActivity {
 						
 						pref.setHistory(historyList);
 						dialog.dismiss();
-						goToHome();
+						
+						if (!pref.isGuideOpened()) {
+							startActivity(new Intent(LoginActivity.this, GuideActivity.class));
+							finish();
+						} else {
+							goToHome();
+						}
+						
 					} else {
 						dialog.dismiss();
 					}

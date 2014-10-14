@@ -28,6 +28,7 @@ import com.dyned.generalenglish1.model.GE;
 import com.dyned.generalenglish1.model.GEMainMenu;
 import com.dyned.generalenglish1.model.GEPushNotification;
 import com.dyned.generalenglish1.model.GERecordHistory;
+import com.dyned.generalenglish1.util.NotificationUtil;
 
 public class HomeFragmentActivity extends BaseActivity {
 
@@ -79,6 +80,7 @@ public class HomeFragmentActivity extends BaseActivity {
 		setContentView(R.layout.home_activity);
 		enableBackMenu();
 		disableHomeButton();
+		NotificationUtil.getInstance().clear();
 		
 		openedIds = new ArrayList<Integer>();
 		
@@ -198,10 +200,19 @@ public class HomeFragmentActivity extends BaseActivity {
 	
 	private void handlePushNotif() {
 		GEPushNotification notif = (GEPushNotification) getIntent().getSerializableExtra("GEData");
-		if (notif != null) {
-//			Intent i = new Intent(HomeFragmentActivity.this, UnitActivity.class);
-//			i.putExtra("GEunit", menu);
-//			startActivity(i);
+		
+		if (notif != null) {			
+			for (int i = 0; i < menus.size(); i++) {
+				GEMainMenu unit = menus.get(i);
+				System.out.println("yyy notif z: " + unit.getId());
+				if (Integer.parseInt(unit.getId()) == notif.getUnitId()) {
+					Intent intent = new Intent(HomeFragmentActivity.this, UnitActivity.class);
+					intent.putExtra("GEunit", unit);
+					startActivity(intent);
+					return;
+				}
+			}
+			
 		}
 	}
 

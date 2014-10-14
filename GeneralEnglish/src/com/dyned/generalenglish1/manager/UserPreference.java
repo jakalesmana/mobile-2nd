@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 
 import com.dyned.generalenglish1.app.GEApplication;
 import com.dyned.generalenglish1.model.GEAnswerPacket;
+import com.dyned.generalenglish1.model.GEPushNotification;
 import com.dyned.generalenglish1.model.GERecordHistory;
 import com.dyned.generalenglish1.model.GERecordLesson;
 import com.dyned.generalenglish1.util.GsonExclusion;
@@ -30,6 +31,9 @@ public class UserPreference {
 	private final String NAME = "name";
 	private final String AVATAR = "avatar";
 	private final String COMPLETE_UNIT = "completed_unit";
+	private final String GUIDE_OPENED = "guide_opened";
+	
+	private static GEPushNotification push;
 	
 	public static UserPreference getInstance(Context c){
 		if (instance == null) {
@@ -124,6 +128,16 @@ public class UserPreference {
 		return myPref.getBoolean(LOGGEN_IN, false);
 	}
 	
+	public void setGuideOpened(boolean open) {
+		SharedPreferences.Editor editor = myPref.edit();
+		editor.putBoolean(GUIDE_OPENED, open);
+		editor.commit();
+	}
+
+	public boolean isGuideOpened() {
+		return myPref.getBoolean(GUIDE_OPENED, false);
+	}
+	
 	public void setAppKey(String appkey) {
 		SharedPreferences.Editor editor = myPref.edit();
 		editor.putString(APP_KEY, appkey);
@@ -211,5 +225,15 @@ public class UserPreference {
 		setLoggedIn(false);
 		setAppKey("");
 		setName("");
+	}
+	
+	public static void setPushBridge(GEPushNotification data){
+		push = data;
+	}
+	
+	public static GEPushNotification getPushBridgeData(){
+		GEPushNotification notif = push;
+		push = null;
+		return notif;
 	}
 }

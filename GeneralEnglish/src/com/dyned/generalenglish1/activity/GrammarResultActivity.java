@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -176,6 +177,13 @@ public class GrammarResultActivity extends BaseActivity {
 	}
 	
 	private void showWaitToUser() {
+		Intent i = new Intent(this, WaitActivity.class);
+		startActivityForResult(i, 0);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 		
 	}
 	

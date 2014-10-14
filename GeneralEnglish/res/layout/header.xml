@@ -3,6 +3,15 @@
     android:layout_height="fill_parent"
     android:background="#157af7" >
 
+    <ImageView
+        android:id="@+id/imgTopLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:src="@drawable/ge_top_left"
+        android:visibility="gone" />
+
     <FrameLayout
         android:id="@+id/layoutBack"
         android:layout_width="wrap_content"
