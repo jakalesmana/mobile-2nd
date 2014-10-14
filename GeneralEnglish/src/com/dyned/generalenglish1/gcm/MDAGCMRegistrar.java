@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
+import com.dyned.generalenglish1.manager.UserPreference;
 import com.dyned.generalenglish1.tools.InternetConnectionListener;
 import com.dyned.generalenglish1.tools.PostInternetTask;
 
@@ -47,7 +48,7 @@ public class MDAGCMRegistrar {
 				try {
 					JSONObject obj = new JSONObject(str);
 					if(obj.getBoolean("status")){
-//						PreferencesUtil.getInstance(context).setGCMID(deviceId);
+						UserPreference.getInstance(context).setGCMID(deviceId);
 					}
 				} catch (JSONException e) {
 				}

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.dyned.generalenglish1.R;
 import com.dyned.generalenglish1.app.GEApplication;
+import com.dyned.generalenglish1.gcm.MDAGCMRegistrar;
 import com.dyned.generalenglish1.manager.UserPreference;
 import com.dyned.generalenglish1.model.GERecordHistory;
 import com.dyned.generalenglish1.tools.InternetConnectionListener;
@@ -26,6 +27,10 @@ public class SplashActivity extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 		pref = UserPreference.getInstance(this);
+		
+		if (UserPreference.getInstance(this).getGCMID().equals("")) {
+			MDAGCMRegistrar.registerGCM(this);
+		}
 		
 		if (pref.isLoggedIn()) {
 			loadLatestHistory();

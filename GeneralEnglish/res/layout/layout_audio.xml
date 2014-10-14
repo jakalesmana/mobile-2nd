@@ -12,7 +12,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_transparent_selectable"
             android:padding="5dp"
-            android:src="@android:drawable/ic_media_play" />
+            android:src="@drawable/play" />
 
     </FrameLayout>
 

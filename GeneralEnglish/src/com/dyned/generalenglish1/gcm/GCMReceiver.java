@@ -1,9 +1,24 @@
 package com.dyned.generalenglish1.gcm;
 
+import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+
+import com.dyned.generalenglish1.activity.NotifHandlerActivity;
+import com.dyned.generalenglish1.app.GEApplication;
+import com.dyned.generalenglish1.manager.UserPreference;
+import com.dyned.generalenglish1.model.GEPushNotification;
+import com.dyned.generalenglish1.model.GERecordHistory;
+import com.dyned.generalenglish1.tools.InternetConnectionListener;
+import com.dyned.generalenglish1.tools.PostInternetTask;
+import com.dyned.generalenglish1.util.NotificationUtil;
+import com.dyned.generalenglish1.util.URLAddress;
 
 public class GCMReceiver extends BroadcastReceiver {
 
@@ -55,12 +70,50 @@ public class GCMReceiver extends BroadcastReceiver {
 		String type = intent.getExtras().getString("type");
 		String data = intent.getExtras().getString("data");
 		
-		System.out.println("conv: " + conv);
-		System.out.println("type: " + type);
-		System.out.println("data: " + data);
-		
-		if (conv.equals("GE1") && type.equals("ge_unit_open")) {
-//			NotificationUtil.getInstance().show(context, "New Update Available", "MyDynEd", data, NotifHandlerActivity.class);
+		if (conv.equals(GEApplication.app) && type.equals("ge_unit_open")) {
+			try {
+				GEPushNotification notif = new GEPushNotification();
+				JSONObject obj = new JSONObject(data);
+				notif.setConverstaion(conv);
+				notif.setType(type);
+				notif.setMessage(obj.getString("message"));
+				notif.setConversationId(obj.getInt("conversation_id"));
+				notif.setUnitId(obj.getInt("unit_id"));
+				notif.setLessonId(obj.getInt("lesson_id"));
+				loadLatestHistory(notif, context);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 		}
+		
+	}
+	
+	private void loadLatestHistory(final GEPushNotification notif, final Context c) {
+		PostInternetTask task = new PostInternetTask(c, new InternetConnectionListener() {			
+			public void onStart() {				
+			}
+			
+			public void onDone(String str) {
+				try {
+					JSONObject result = new JSONObject(str);
+					boolean status = result.getBoolean("status");
+					if (status) {
+						System.out.println("response update histroy on notif: " + str);
+						List<GERecordHistory> historyList = GERecordHistory.parseHistory(str);
+						UserPreference.getInstance(c).setHistory(historyList);
+						NotificationUtil.getInstance().show(c, notif, NotifHandlerActivity.class);
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			public void onConnectionError(String message) {
+			}
+		});
+		task.addPair("app_key", UserPreference.getInstance(c).getAppKey());
+		task.addPair("conversation", GEApplication.app);
+		
+		task.execute(URLAddress.URL_CONVERSATION_HISTORY);
 	}
 }

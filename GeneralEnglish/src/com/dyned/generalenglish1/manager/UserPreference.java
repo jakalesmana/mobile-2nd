@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import com.dyned.generalenglish1.app.GEApplication;
 import com.dyned.generalenglish1.model.GEAnswerPacket;
 import com.dyned.generalenglish1.model.GERecordHistory;
+import com.dyned.generalenglish1.model.GERecordLesson;
 import com.dyned.generalenglish1.util.GsonExclusion;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -28,6 +29,7 @@ public class UserPreference {
 	private final String LOGGEN_IN = "logged_in";
 	private final String NAME = "name";
 	private final String AVATAR = "avatar";
+	private final String COMPLETE_UNIT = "completed_unit";
 	
 	public static UserPreference getInstance(Context c){
 		if (instance == null) {
@@ -148,7 +150,7 @@ public class UserPreference {
 		editor.commit();
 	}
 
-	public String getName() {
+	public String getName() { 
 		return myPref.getString(NAME, "");
 	}
 	
@@ -162,6 +164,49 @@ public class UserPreference {
 		return myPref.getString(AVATAR, "");
 	}
 
+	public void addCompletedUnit(String unitCode) {
+		String comp = myPref.getString(COMPLETE_UNIT, "");
+		StringBuilder sb = new StringBuilder(comp);
+		if (comp.isEmpty()) {
+			sb.append(unitCode);
+		} else {
+			sb.append("," + unitCode);
+		}
+		
+		SharedPreferences.Editor editor = myPref.edit();
+		editor.putString(COMPLETE_UNIT, unitCode);
+		editor.commit();
+	}
+
+	public boolean isCompletedUnit(String unitCode) {
+		String comp = myPref.getString(COMPLETE_UNIT, "");
+		String[] completes = comp.split(",");
+		for (int i = 0; i < completes.length; i++) {
+			if (unitCode.equalsIgnoreCase(completes[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean isCompletedLesson(String unitCode, String lessonCode) {
+		List<GERecordHistory> histories = getHistory();
+		for (int i = 0; i < histories.size(); i++) {
+			if (histories.get(i).getUnit().equalsIgnoreCase(unitCode)) {
+				List<GERecordLesson> lessons = histories.get(i).getRecords();
+				for (int j = 0; j < lessons.size(); j++) {
+					if (lessons.get(j).getStatus().equals("completed")) {
+						if (lessons.get(j).getLessonCode().equalsIgnoreCase(lessonCode)) {
+							return true;
+						}
+					}
+				}
+			}
+			
+		}
+		return false;
+	}
+	
 	public void logout() {
 		setLoggedIn(false);
 		setAppKey("");

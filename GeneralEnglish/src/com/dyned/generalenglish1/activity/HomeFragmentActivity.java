@@ -26,6 +26,7 @@ import com.dyned.generalenglish1.manager.LessonManager;
 import com.dyned.generalenglish1.manager.UserPreference;
 import com.dyned.generalenglish1.model.GE;
 import com.dyned.generalenglish1.model.GEMainMenu;
+import com.dyned.generalenglish1.model.GEPushNotification;
 import com.dyned.generalenglish1.model.GERecordHistory;
 
 public class HomeFragmentActivity extends BaseActivity {
@@ -191,8 +192,19 @@ public class HomeFragmentActivity extends BaseActivity {
 				}
 			}
 		});
+		
+		handlePushNotif();
 	}
 	
+	private void handlePushNotif() {
+		GEPushNotification notif = (GEPushNotification) getIntent().getSerializableExtra("GEData");
+		if (notif != null) {
+//			Intent i = new Intent(HomeFragmentActivity.this, UnitActivity.class);
+//			i.putExtra("GEunit", menu);
+//			startActivity(i);
+		}
+	}
+
 	private OnClickListener menuClickHandler = new OnClickListener() {
 		public void onClick(View v) {
 			int pos = Integer.parseInt((String) v.getTag());
@@ -345,6 +357,15 @@ public class HomeFragmentActivity extends BaseActivity {
 							openedIds.add(12);
 						}
 					}
+					
+					try {
+						GERecordHistory geh = histories.get(j);
+						if (geh != null && geh.getRecords().get(0).getStatus().equals("waiting")) {
+							UserPreference.getInstance(this).addCompletedUnit(histories.get(j-1).getUnit());
+						}
+					} catch (IndexOutOfBoundsException e) {
+					}
+					
 				}
 			}
 		}

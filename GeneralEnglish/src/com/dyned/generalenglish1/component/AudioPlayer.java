@@ -9,6 +9,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -39,6 +40,7 @@ public class AudioPlayer extends FrameLayout {
 	private int durationTotalSecond;
 	private AudioPlayerListener listener;
 	
+	@SuppressLint("InflateParams")
 	public AudioPlayer(Context context, String filename, AudioPlayerListener listener) {
 		super(context);
 		setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
@@ -71,10 +73,11 @@ public class AudioPlayer extends FrameLayout {
 		player.setOnCompletionListener(new OnCompletionListener() {			
 			public void onCompletion(MediaPlayer mp) {
 				playing = false;
-				btnMedia.setImageResource(android.R.drawable.ic_media_play);
+				btnMedia.setImageResource(R.drawable.play);
 				shouldUpdate = false;
 				bar.setProgress(0);
 				if(listener != null) listener.onStop();
+				if(listener != null) listener.onComplete();
 			}
 		});
 		
@@ -113,13 +116,29 @@ public class AudioPlayer extends FrameLayout {
 		});
 	}
 	
+	public void setDraggable(boolean draggable){
+		bar.setEnabled(draggable);
+		
+		if (draggable == false) {
+			AlphaAnimation alpha = new AlphaAnimation(0.2f, 0.2f);
+			alpha.setDuration(0);
+			alpha.setFillAfter(true); 
+			bar.startAnimation(alpha);
+		} else {
+			AlphaAnimation alpha = new AlphaAnimation(0.2f, 1.0f);
+			alpha.setDuration(0);
+			alpha.setFillAfter(true); 
+			bar.startAnimation(alpha);
+		}
+	}
+	
 	public void playPause(){
 		if (playing) {
 			System.out.println("audio player pause");
 			player.pause();
 			if(listener != null) listener.onPause();
 			playing = false;
-			btnMedia.setImageResource(android.R.drawable.ic_media_play);
+			btnMedia.setImageResource(R.drawable.play);
 		} else {
 			System.out.println("audio player play");
 			shouldUpdate = true;
@@ -172,7 +191,7 @@ public class AudioPlayer extends FrameLayout {
 		seekHandler.removeCallbacksAndMessages(run);
 		bar.setProgress(0);
 		playing = false;
-		btnMedia.setImageResource(android.R.drawable.ic_media_play);
+		btnMedia.setImageResource(R.drawable.play);
 		if (player != null) {
 			player.stop();
 			player.reset();

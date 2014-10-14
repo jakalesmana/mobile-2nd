@@ -5,6 +5,7 @@ import java.util.Locale;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ public class ListeningActivity extends BaseActivity {
 	private boolean viewScript;
 	private boolean audioPlaying;
 	private long playTime;
+	private ImageView imgLesson;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class ListeningActivity extends BaseActivity {
 		
 		GELesson lesson = (GELesson) getIntent().getSerializableExtra("GElesson");
 		
-		ImageView imgLesson = (ImageView) findViewById(R.id.imgLesson);
+		imgLesson = (ImageView) findViewById(R.id.imgLesson);
 		imgLesson.setImageResource(AppUtil.getImageResId(this, lesson.getImage().toLowerCase(Locale.getDefault()).split("\\.")[0] + "_img"));
 		
 		FrameLayout layoutAudio = (FrameLayout) findViewById(R.id.layoutAudio);
@@ -55,7 +57,17 @@ public class ListeningActivity extends BaseActivity {
 		});
 		
 		toggleScript = (TextView) findViewById(R.id.txtViewScript);
-		toggleScript.setEnabled(false);
+		
+		if (!UserPreference.getInstance(this).isCompletedLesson(lessonMgr.getCurrentUnit().getCode(), lesson.getCode())) {
+			toggleScript.setEnabled(false);
+			AlphaAnimation alpha = new AlphaAnimation(0.2f, 0.2f);
+			alpha.setDuration(0);
+			alpha.setFillAfter(true); 
+			toggleScript.startAnimation(alpha);
+			imgLesson.startAnimation(alpha);
+			ap.setDraggable(false);
+		}
+		
 		txtScript = (TextView) findViewById(R.id.txtScript);
 		for (int i = 0; i < lesson.getListScript().size(); i++) {
 			txtScript.append(lesson.getListScript().get(i) + "\n\n");
@@ -90,6 +102,12 @@ public class ListeningActivity extends BaseActivity {
 		}
 		public void onComplete(){
 			toggleScript.setEnabled(true);
+			AlphaAnimation alpha = new AlphaAnimation(0.2f, 1.0f);
+			alpha.setDuration(0);
+			alpha.setFillAfter(true); 
+			toggleScript.startAnimation(alpha);
+			imgLesson.startAnimation(alpha);
+			ap.setDraggable(true);
 		}
 	};
 	

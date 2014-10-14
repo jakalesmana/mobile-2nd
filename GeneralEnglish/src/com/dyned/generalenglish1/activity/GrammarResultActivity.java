@@ -35,6 +35,8 @@ public class GrammarResultActivity extends BaseActivity {
 	
 	private LessonManager lessonMgr;
 	private UserPreference pref;
+	private GELesson lesson;
+	private GEMainMenu unit;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +48,8 @@ public class GrammarResultActivity extends BaseActivity {
 		lessonMgr = LessonManager.getInstance();
 		pref = UserPreference.getInstance(this);
 		
-		GEMainMenu unit = lessonMgr.getCurrentUnit();
-		GELesson lesson = lessonMgr.getCurrentLesson();
+		unit = lessonMgr.getCurrentUnit();
+		lesson = lessonMgr.getCurrentLesson();
 		
 		TextView txtUnit = (TextView) findViewById(R.id.txtUnit);
 		TextView txtLesson = (TextView) findViewById(R.id.txtLesson);
@@ -146,8 +148,12 @@ public class GrammarResultActivity extends BaseActivity {
 					if (status) {
 						System.out.println("response update histroy: " + str);
 						List<GERecordHistory> historyList = GERecordHistory.parseHistory(str);
+
+						if (!pref.isCompletedLesson(unit.getCode(), lesson.getCode())) {
+							showWaitToUser();
+						}
 						
-						UserPreference.getInstance(GrammarResultActivity.this).setHistory(historyList);
+						pref.setHistory(historyList);
 					}
 					dialog.dismiss();
 				} catch (JSONException e) {
@@ -156,6 +162,8 @@ public class GrammarResultActivity extends BaseActivity {
 				}
 			}
 			
+			
+
 			public void onConnectionError(String message) {
 				dialog.dismiss();
 				Toast.makeText(GrammarResultActivity.this, message + ", try again later.", Toast.LENGTH_SHORT).show();
@@ -165,6 +173,10 @@ public class GrammarResultActivity extends BaseActivity {
 		task.addPair("conversation", GEApplication.app);
 		
 		task.execute(URLAddress.URL_CONVERSATION_HISTORY);
+	}
+	
+	private void showWaitToUser() {
+		
 	}
 	
 	@Override
