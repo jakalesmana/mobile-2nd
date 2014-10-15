@@ -39,7 +39,7 @@
         android:layout_toLeftOf="@+id/imgAction"
         android:gravity="center"
         android:text="General English 1"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 

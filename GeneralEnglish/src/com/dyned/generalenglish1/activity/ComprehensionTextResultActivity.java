@@ -24,6 +24,7 @@ public class ComprehensionTextResultActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_comprehension_result);
 		AppUtil.AddActivityHistory(this);
+		setHeaderTitle("Feedback");
 		
 		disableMenu();
 		

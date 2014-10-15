@@ -250,7 +250,7 @@ public class HomeFragmentActivity extends BaseActivity {
 		} else if(density == 2.0){ //xhdpi
 			var = 12;
 		} else if(density == 3.0){ //xxhdpi
-			var = 13;
+			var = 10;
 		}
 		handleLayout(var);
 	}

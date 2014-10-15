@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -166,6 +167,14 @@ public class ProfileActivity extends BaseActivity {
 		btnUpdate.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				submit();
+			}
+		});
+		
+		LinearLayout layoutChangePassword = (LinearLayout) findViewById(R.id.layoutChangePassword);
+		layoutChangePassword.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(ProfileActivity.this, ChangePasswordActivity.class);
+				startActivity(i);
 			}
 		});
 		

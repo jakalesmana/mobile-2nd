@@ -3,12 +3,14 @@ package com.dyned.generalenglish1.activity;
 import java.util.Locale;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dyned.generalenglish1.R;
@@ -25,26 +27,29 @@ public class ListeningActivity extends BaseActivity {
 	
 	private LessonManager lessonMgr;
 	private AudioPlayer ap;
-	private TextView toggleScript;
+	private LinearLayout toggleScript;
 	private TextView txtScript;
 	private boolean viewScript;
 	private boolean audioPlaying;
 	private long playTime;
-	private ImageView imgLesson;
-	
+	private ImageView imgLesson; //350 x 233
+	private ImageView imgToggle;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lesson);
 		AppUtil.AddActivityHistory(this);
+		setHeaderTitle("Listening");
 		
 		lessonMgr = LessonManager.getInstance();
 		
 		GELesson lesson = (GELesson) getIntent().getSerializableExtra("GElesson");
 		
+		imgToggle = (ImageView) findViewById(R.id.imgToggle);
 		imgLesson = (ImageView) findViewById(R.id.imgLesson);
 		imgLesson.setImageResource(AppUtil.getImageResId(this, lesson.getImage().toLowerCase(Locale.getDefault()).split("\\.")[0] + "_img"));
-		
+				
 		FrameLayout layoutAudio = (FrameLayout) findViewById(R.id.layoutAudio);
 		ap = new AudioPlayer(this, lesson.getAudio().split("\\.")[0], audioListener);
 		layoutAudio.addView(ap);
@@ -56,7 +61,7 @@ public class ListeningActivity extends BaseActivity {
 			}
 		});
 		
-		toggleScript = (TextView) findViewById(R.id.txtViewScript);
+		toggleScript = (LinearLayout) findViewById(R.id.txtViewScript);
 		
 		if (!UserPreference.getInstance(this).isCompletedLesson(lessonMgr.getCurrentUnit().getCode(), lesson.getCode())) {
 			toggleScript.setEnabled(false);
@@ -70,7 +75,10 @@ public class ListeningActivity extends BaseActivity {
 		
 		txtScript = (TextView) findViewById(R.id.txtScript);
 		for (int i = 0; i < lesson.getListScript().size(); i++) {
-			txtScript.append(lesson.getListScript().get(i) + "\n\n");
+			String text = lesson.getListScript().get(i);
+			String person = "<b>" + text.split(":")[0] + " : </b>";
+			String dialogue = text.split(":")[1];
+			txtScript.append(Html.fromHtml(person + "<br>" + dialogue + "<br><br>"));
 		}
 		toggleScript.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -111,6 +119,12 @@ public class ListeningActivity extends BaseActivity {
 		}
 	};
 	
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus);
+		imgLesson.getLayoutParams().width = AppUtil.GetScreenWidth(this);
+		imgLesson.getLayoutParams().height = AppUtil.GetScreenWidth(this) * 223 / 350;
+	};
+	
 	private void countTime() {
 		long listeningSeconds = (System.currentTimeMillis() - playTime) / 1000;
 		
@@ -124,11 +138,13 @@ public class ListeningActivity extends BaseActivity {
 	
 	private void toggleScript() {
 		if (!viewScript) {
-			toggleScript.setText("- Hide Script");
+			((TextView)toggleScript.getChildAt(0)).setText("Hide Script");
 			txtScript.setVisibility(View.VISIBLE);
+			imgToggle.setImageResource(R.drawable.arrow_up);
 		} else {
-			toggleScript.setText("+ View Script");
+			((TextView)toggleScript.getChildAt(0)).setText("View Script");
 			txtScript.setVisibility(View.GONE);
+			imgToggle.setImageResource(R.drawable.arrow_down);
 		}
 		viewScript = ! viewScript;
 	}
