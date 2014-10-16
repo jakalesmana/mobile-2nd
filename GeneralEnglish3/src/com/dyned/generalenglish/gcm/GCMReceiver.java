@@ -80,7 +80,7 @@ public class GCMReceiver extends BroadcastReceiver {
 				notif.setType(type);
 				notif.setMessage(obj.getString("message"));
 				notif.setConversationId(obj.getInt("conversation_id"));
-				notif.setUnitId(obj.getInt("unit_id"));
+				notif.setUnitId(obj.getInt("unit_id") - 24);
 				notif.setLessonId(obj.getInt("lesson_id"));
 				loadLatestHistory(notif, context);
 			} catch (JSONException e) {

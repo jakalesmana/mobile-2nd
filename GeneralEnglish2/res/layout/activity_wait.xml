@@ -37,8 +37,7 @@
                 android:id="@+id/imgLesson"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/nde0106_bonus_img" />
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/txtLesson"

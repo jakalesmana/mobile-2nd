@@ -72,6 +72,12 @@ public class GCMReceiver extends BroadcastReceiver {
 		String type = intent.getExtras().getString("type");
 		String data = intent.getExtras().getString("data");
 		
+		System.out.println("data: type: " + type);
+		System.out.println("data: conv: " + conv);
+		System.out.println("data: data: " + data);
+		
+		
+		
 		if (conv.equals(GEApplication.app) && type.equals("ge_unit_open")) {
 			try {
 				GEPushNotification notif = new GEPushNotification();
@@ -80,7 +86,7 @@ public class GCMReceiver extends BroadcastReceiver {
 				notif.setType(type);
 				notif.setMessage(obj.getString("message"));
 				notif.setConversationId(obj.getInt("conversation_id"));
-				notif.setUnitId(obj.getInt("unit_id"));
+				notif.setUnitId(obj.getInt("unit_id") - 12);
 				notif.setLessonId(obj.getInt("lesson_id"));
 				loadLatestHistory(notif, context);
 			} catch (JSONException e) {
