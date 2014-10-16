@@ -30,7 +30,7 @@ public class RegisterActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 		disableHomeButton();
-		setTitle("Sign Up");
+		setHeaderTitle("Sign Up");
 		
 		txtEmail = (EditText)findViewById(R.id.txtEmail);
 		txtPassword = (EditText)findViewById(R.id.txtPassword);
