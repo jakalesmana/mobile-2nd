@@ -36,7 +36,6 @@
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:layout_toLeftOf="@+id/imgAction"
         android:gravity="center"
         android:text="General English 6"
         android:textAppearance="?android:attr/textAppearanceLarge"
