@@ -77,7 +77,7 @@ public class ListeningActivity extends BaseActivity {
 		for (int i = 0; i < lesson.getListScript().size(); i++) {
 			String text = lesson.getListScript().get(i);
 			String person = "<b>" + text.split(":")[0] + " : </b>";
-			String dialogue = text.split(":")[1];
+			String dialogue = text.substring(text.indexOf(":") + 1);
 			txtScript.append(Html.fromHtml(person + "<br>" + dialogue + "<br><br>"));
 		}
 		toggleScript.setOnClickListener(new OnClickListener() {

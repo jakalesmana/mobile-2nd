@@ -38,7 +38,7 @@ public class ComprehensionAudioResultActivity extends BaseActivity {
 		ListView lvResult = (ListView) findViewById(R.id.lvResult);
 		
 		txtUnit.setText(unit.getTitle());
-		txtLesson.setText(lesson.getComprehension().getTitle());
+		txtLesson.setText(lesson.getTitle() + " - Comprehension");
 		lvResult.setAdapter(new ResultAdapter(this, lesson.getComprehension().getListQuestion(), lessonMgr.getCurrentComprehensionAnswer(), true));
 		
 		btnTry.setOnClickListener(new OnClickListener() {

@@ -187,8 +187,8 @@ public class ProfileActivity extends BaseActivity {
 		 imgProfile.getLayoutParams().height = bmp.getWidth() * 3 / 2;
 		 ImageLoader imageLoader = ImageLoader.getInstance();
 		 
-		 imageLoader.displayImage(profile.getAvatar(), imgProfile,
-		 optionsAvatar, new AnimateFirstDisplayListener(profile.getAvatar(),imgProfile, false, 0, 0));
+		 imageLoader.displayImage(UserPreference.getInstance(this).getAvatar(), imgProfile,
+		 optionsAvatar, new AnimateFirstDisplayListener(UserPreference.getInstance(this).getAvatar(),imgProfile, false, 0, 0));
 	}
 	
 	private void setGender() {
@@ -267,7 +267,7 @@ public class ProfileActivity extends BaseActivity {
 			}
 			
 			public void onDone(String str) {
-				System.out.println("response update: " + str);
+				System.out.println("response update profile: " + str);
 				
 				try {
 					JSONObject obj = new JSONObject(str);
@@ -353,7 +353,7 @@ public class ProfileActivity extends BaseActivity {
 				Toast.makeText(ProfileActivity.this, message + ", try again later.", Toast.LENGTH_SHORT).show();
 			}
 		}, ImageUtil.ConvertToFile(ProfileActivity.this, bitmap, 100, "" + System.currentTimeMillis() + ".jpg"));
-		task.addPair("app_key", profile.getAppKey());
+		task.addPair("app_key", UserPreference.getInstance(this).getAppKey());
 		task.execute(URLAddress.UPDATE_PROFILE_AVATAR);
 	}
 

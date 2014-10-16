@@ -391,13 +391,14 @@ public class HomeFragmentActivity extends BaseActivity {
 		ImageView imgUnit1 = (ImageView) findViewById(R.id.imgUnit1);
 		ImageView imgUnit2 = (ImageView) findViewById(R.id.imgUnit2);
 		
-		int imageWidth = imgUnit1.getWidth();
+		int imageOddWidth = imgUnit1.getWidth();
+		int imageEvenWidth = imgUnit2.getWidth();
 		
-		int x1 = imageWidth + imgUnit1.getLeft() + layoutImgUnit1.getLeft() - (imageWidth / 8);		
-		int yLine1 = imageWidth + layoutImgUnit1.getTop() - (imageWidth / 4);
+		int x1 = (int) (imageOddWidth + imgUnit1.getLeft() + layoutImgUnit1.getLeft() - (imageOddWidth / 8) - (2 * density));		
+		int yLine1 = imageOddWidth + layoutImgUnit1.getTop() - (imageOddWidth / 4);
 						
-		int x2 = imgUnit2.getRight() + layoutImgUnit2.getLeft() - (imageWidth * 3 / 4);
-		int y2 = yLine1 + (imageWidth / 2);
+		int x2 = imgUnit2.getRight() + layoutImgUnit2.getLeft() - (imageOddWidth * 3 / 4);
+		int y2 = yLine1 + (imageOddWidth / 2);
 		
 		int lineWidth = x2 - x1;
 		int lineHeight = y2 - yLine1;
@@ -408,70 +409,70 @@ public class HomeFragmentActivity extends BaseActivity {
 		layoutPipe1.setLayoutParams(params);
 		
 		
-		int yLine2 = (int) (yLine1 + (imageWidth) + (var * density * 2));
+		int yLine2 = (int) (yLine1 + (imageEvenWidth) + (var * density * 2));
 		FrameLayout layoutPipe2 = (FrameLayout) findViewById(R.id.layoutPipe2);
 		LayoutParams params2 = new LayoutParams(lineWidth, lineHeight);
 		params2.leftMargin = x1;
 		params2.topMargin = yLine2;
 		layoutPipe2.setLayoutParams(params2);
 		
-		int yLine3 = (int) (yLine2 + (imageWidth) + (0 * density));
+		int yLine3 = (int) (yLine2 + (imageOddWidth) + (0 * density));
 		FrameLayout layoutPipe3 = (FrameLayout) findViewById(R.id.layoutPipe3);
 		LayoutParams params3 = new LayoutParams(lineWidth, lineHeight);
 		params3.leftMargin = x1;
 		params3.topMargin = yLine3;
 		layoutPipe3.setLayoutParams(params3);
 		
-		int yLine4 = (int) (yLine3 + (imageWidth) + (var * density * 2));
+		int yLine4 = (int) (yLine3 + (imageEvenWidth) + (var * density * 2));
 		FrameLayout layoutPipe4 = (FrameLayout) findViewById(R.id.layoutPipe4);
 		LayoutParams params4 = new LayoutParams(lineWidth, lineHeight);
 		params4.leftMargin = x1;
 		params4.topMargin = yLine4;
 		layoutPipe4.setLayoutParams(params4);
 		
-		int yLine5 = (int) (yLine4 + (imageWidth) + (0 * density));
+		int yLine5 = (int) (yLine4 + (imageOddWidth) + (0 * density));
 		FrameLayout layoutPipe5 = (FrameLayout) findViewById(R.id.layoutPipe5);
 		LayoutParams params5 = new LayoutParams(lineWidth, lineHeight);
 		params5.leftMargin = x1;
 		params5.topMargin = yLine5;
 		layoutPipe5.setLayoutParams(params5);
 		
-		int yLine6 = (int) (yLine5 + (imageWidth) + (var * density * 2));
+		int yLine6 = (int) (yLine5 + (imageEvenWidth) + (var * density * 2));
 		FrameLayout layoutPipe6 = (FrameLayout) findViewById(R.id.layoutPipe6);
 		LayoutParams params6 = new LayoutParams(lineWidth, lineHeight);
 		params6.leftMargin = x1;
 		params6.topMargin = yLine6;
 		layoutPipe6.setLayoutParams(params6);
 				
-		int yLine7 = (int) (yLine6 + (imageWidth) + (0 * density));
+		int yLine7 = (int) (yLine6 + (imageOddWidth) + (0 * density));
 		FrameLayout layoutPipe7 = (FrameLayout) findViewById(R.id.layoutPipe7);
 		LayoutParams params7 = new LayoutParams(lineWidth, lineHeight);
 		params7.leftMargin = x1;
 		params7.topMargin = yLine7;
 		layoutPipe7.setLayoutParams(params7);
 		
-		int yLine8 = (int) (yLine7 + (imageWidth) + (var * density * 2));
+		int yLine8 = (int) (yLine7 + (imageEvenWidth) + (var * density * 2));
 		FrameLayout layoutPipe8 = (FrameLayout) findViewById(R.id.layoutPipe8);
 		LayoutParams params8 = new LayoutParams(lineWidth, lineHeight);
 		params8.leftMargin = x1;
 		params8.topMargin = yLine8;
 		layoutPipe8.setLayoutParams(params8);
 		
-		int yLine9 = (int) (yLine8 + (imageWidth) + (0 * density));
+		int yLine9 = (int) (yLine8 + (imageOddWidth) + (0 * density));
 		FrameLayout layoutPipe9 = (FrameLayout) findViewById(R.id.layoutPipe9);
 		LayoutParams params9 = new LayoutParams(lineWidth, lineHeight);
 		params9.leftMargin = x1;
 		params9.topMargin = yLine9;
 		layoutPipe9.setLayoutParams(params9);
 		
-		int yLine10 = (int) (yLine9 + (imageWidth) + (var * density * 2));
+		int yLine10 = (int) (yLine9 + (imageEvenWidth) + (var * density * 2));
 		FrameLayout layoutPipe10 = (FrameLayout) findViewById(R.id.layoutPipe10);
 		LayoutParams params10 = new LayoutParams(lineWidth, lineHeight);
 		params10.leftMargin = x1;
 		params10.topMargin = yLine10;
 		layoutPipe10.setLayoutParams(params10);
 		
-		int yLine11 = (int) (yLine10 + (imageWidth) + (0 * density));
+		int yLine11 = (int) (yLine10 + (imageOddWidth) + (0 * density));
 		FrameLayout layoutPipe11 = (FrameLayout) findViewById(R.id.layoutPipe11);
 		LayoutParams params11 = new LayoutParams(lineWidth, lineHeight);
 		params11.leftMargin = x1;

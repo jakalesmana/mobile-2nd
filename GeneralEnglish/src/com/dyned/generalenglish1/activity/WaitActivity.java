@@ -43,11 +43,17 @@ public class WaitActivity extends Activity {
 					GELesson gelesson = lessons.get(j);
 					if (gelesson.getCode().equals(currentLesson.getCode())) {
 						try {
-							//next lesson of unit
-							nextUnit = geunit;
-							nextLesson = lessons.get(j + 1);
+							if (lessons.get(j + 1).getCode().equalsIgnoreCase("LBNS")) {
+								//if lesson bonus, got to next lesson (first lesson of next unit)
+								nextUnit = menus.get(i + 1);
+								nextLesson = menus.get(i + 1).getListLesson().get(0);
+							} else {
+								//next lesson of unit
+								nextUnit = geunit;
+								nextLesson = lessons.get(j + 1);
+							}
 						} catch (IndexOutOfBoundsException e) {
-							//last lesson of unit
+							//reach last lesson of unit
 							try {
 								//first lesson of next unit
 								nextUnit = menus.get(i + 1);
@@ -63,7 +69,7 @@ public class WaitActivity extends Activity {
 			}
 		}
 		
-		txtWait.setText(nextUnit.getTitle().split(":")[0] + " " + nextLesson.getTitle());
+		txtWait.setText(nextUnit.getTitle().split(":")[0] + " " + nextLesson.getTitle() + " in");
 		imgWait.setImageResource(AppUtil.getImageResId(this, nextLesson.getImage().toLowerCase(Locale.getDefault()).split("\\.")[0] + "_img"));
 		
 		imgWait.setOnClickListener(new OnClickListener() {

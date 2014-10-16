@@ -60,7 +60,7 @@ public class GrammarResultActivity extends BaseActivity {
 		ListView lvResult = (ListView) findViewById(R.id.lvResult);
 		
 		txtUnit.setText(unit.getTitle());
-		txtLesson.setText(lesson.getTitle());
+		txtLesson.setText(lesson.getTitle() + " - Grammar");
 		lvResult.setAdapter(new ResultAdapter(this, lesson.getGrammar().getListQuestion(), lessonMgr.getCurrentGrammarAnswer()));
 		
 		btnTry.setOnClickListener(new OnClickListener() {
@@ -151,8 +151,14 @@ public class GrammarResultActivity extends BaseActivity {
 						System.out.println("response update histroy: " + str);
 						List<GERecordHistory> historyList = GERecordHistory.parseHistory(str);
 
-						if (!pref.isCompletedLesson(unit.getCode(), lesson.getCode())) {
-							showWaitToUser();
+						if (lesson.getCode().equalsIgnoreCase("LC")) {
+							showUnitShareToUser();
+						} else {
+							if (!unit.getCode().equalsIgnoreCase("U1") && !lesson.getCode().equalsIgnoreCase("LBNS")) {
+								if (!pref.isCompletedLesson(unit.getCode(), lesson.getCode())) {
+									showWaitToUser();
+								}
+							}
 						}
 						
 						pref.setHistory(historyList);
@@ -163,8 +169,6 @@ public class GrammarResultActivity extends BaseActivity {
 					dialog.dismiss();
 				}
 			}
-			
-			
 
 			public void onConnectionError(String message) {
 				dialog.dismiss();
@@ -179,6 +183,11 @@ public class GrammarResultActivity extends BaseActivity {
 	
 	private void showWaitToUser() {
 		Intent i = new Intent(this, WaitActivity.class);
+		startActivityForResult(i, 0);
+	}
+	
+	private void showUnitShareToUser() {
+		Intent i = new Intent(this, UnitShareActivity.class);
 		startActivityForResult(i, 0);
 	}
 	
