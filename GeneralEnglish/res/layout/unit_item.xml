@@ -6,7 +6,7 @@
     android:paddingLeft="15dp"
     android:background="@drawable/bg_options_selection" >
     
-    <com.dyned.generalenglish1.component.CircularImageView
+    <com.dyned.generalenglish.component.CircularImageView
         android:id="@+id/imgLesson"
         android:layout_width="100dp"
         android:layout_height="100dp"

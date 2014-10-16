@@ -34,7 +34,7 @@
                     android:src="@drawable/def_profile" />
                 -->
 
-                <com.dyned.generalenglish1.component.CircularImageView
+                <com.dyned.generalenglish.component.CircularImageView
                     android:id="@+id/imgProfile"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
