@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.dyned.generalenglish5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingLeft="15dp"
+    android:background="@drawable/bg_options_selection" >
+    
+    <com.dyned.generalenglish.component.CircularImageView
+        android:id="@+id/imgLesson"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:src="@drawable/unit_1"
+        app:border_color="#00EEEEEE"
+        app:border_width="0dp"
+        app:shadow="false" />
+
+    <TextView
+        android:id="@+id/txtLesson"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:padding="20dp"
+        android:text="LessonName"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/color_font_selection" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/arrow_selector" />
+
+</LinearLayout>
