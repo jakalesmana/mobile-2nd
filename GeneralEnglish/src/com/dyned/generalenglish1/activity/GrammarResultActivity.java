@@ -45,6 +45,7 @@ public class GrammarResultActivity extends BaseActivity {
 		setContentView(R.layout.activity_grammar_result);
 		AppUtil.AddActivityHistory(this);
 		disableMenu();
+		setHeaderTitle("Feedback");
 		
 		lessonMgr = LessonManager.getInstance();
 		pref = UserPreference.getInstance(this);

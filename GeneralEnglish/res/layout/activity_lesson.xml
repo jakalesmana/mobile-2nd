@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:gravity="center_vertical"
     android:orientation="vertical" >
 
     <FrameLayout
@@ -9,7 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="20dp" >
-        
     </FrameLayout>
 
     <LinearLayout
@@ -18,15 +18,32 @@
         android:layout_weight="1"
         android:orientation="vertical" >
 
-        <TextView
+        <LinearLayout
             android:id="@+id/txtViewScript"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#8e8e8e"
-            android:padding="10dp"
-            android:text="+ View Script"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFFFF" />
+            android:background="#33838383" >
+
+            <TextView
+                
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                
+                android:padding="10dp"
+                android:text="View Script"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:id="@+id/imgToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="10dp"
+                android:src="@drawable/arrow_down" />
+
+        </LinearLayout>
 
         <ScrollView
             android:id="@+id/scrollView1"
@@ -44,6 +61,7 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text=""
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:visibility="gone" />
 
                 <ImageView
@@ -53,19 +71,17 @@
                     android:layout_marginTop="5dp"
                     android:scaleType="centerCrop" />
 
+                <Button
+                    android:id="@+id/btnQuestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/bg_btn_green_noborder"
+                    android:text="QUESTIONS"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
         </ScrollView>
-
     </LinearLayout>
-    
-    <Button
-        android:id="@+id/btnQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
-        android:background="@drawable/bg_btn_green_noborder"
-        android:text="QUESTIONS"
-        android:textColor="#FFFFFF" />
 
 </LinearLayout>
