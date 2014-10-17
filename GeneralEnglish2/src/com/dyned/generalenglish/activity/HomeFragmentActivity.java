@@ -242,14 +242,19 @@ public class HomeFragmentActivity extends BaseActivity {
 		super.onWindowFocusChanged(hasFocus);
 		int var = 10;
 		if(density == 0.75){ //ldpi
+			System.out.println("density: ldpi");
 			var = 9;
 		} else if(density == 1.0){ //mdpi
+			System.out.println("density: mdpi");
 			var = 10;
 		} else if (density == 1.5) { //hdpi
+			System.out.println("density: hdpi");
 			var = 11;
 		} else if(density == 2.0){ //xhdpi
-			var = 12;
+			System.out.println("density: xhdpi");
+			var = 10;
 		} else if(density == 3.0){ //xxhdpi
+			System.out.println("density: xxhdpi");
 			var = 10;
 		}
 		handleLayout(var);
