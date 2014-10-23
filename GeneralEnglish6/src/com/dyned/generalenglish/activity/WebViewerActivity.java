@@ -10,7 +10,6 @@ import com.dyned.generalenglish6.R;
 
 public class WebViewerActivity extends BaseActivity {
 	
-	@SuppressWarnings("deprecation")
 	@SuppressLint("SetJavaScriptEnabled")
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
