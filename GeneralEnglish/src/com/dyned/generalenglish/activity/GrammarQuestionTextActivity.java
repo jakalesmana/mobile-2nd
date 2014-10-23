@@ -26,6 +26,7 @@ public class GrammarQuestionTextActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_question_text);
 		AppUtil.AddActivityHistory(this);
+		setHeaderTitle("Grammar");
 		
 		lessonMgr = LessonManager.getInstance();
 		

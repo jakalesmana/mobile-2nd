@@ -240,6 +240,11 @@ public class HomeFragmentActivity extends BaseActivity {
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		super.onWindowFocusChanged(hasFocus);
+		int var = getVar();
+		handleLayout(var);
+	}
+	
+	private int getVar() {
 		int var = 10;
 		if(density == 0.75){ //ldpi
 			System.out.println("density: ldpi");
@@ -257,12 +262,15 @@ public class HomeFragmentActivity extends BaseActivity {
 			System.out.println("density: xxhdpi");
 			var = 10;
 		}
-		handleLayout(var);
+		return var;
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
+		int var = getVar();
+		handleLayout(var);
+		
 		handleStatus();
 	}
 

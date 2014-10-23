@@ -179,7 +179,13 @@ public class AudioPlayer extends FrameLayout {
 	}
 
 	private String getToGoSecondString(String current) {
-		int togo = durationTotalSecond - ((Integer.parseInt(current.split(":")[1])));
+		int total = ((Integer.parseInt(current.split(":")[1])));
+		int togo = durationTotalSecond - total;
+		
+		if (togo < 0) {
+			togo = togo + 60;
+		}
+		
 		String res = "" + togo;
 		if (("" + togo).length() < 2) {
 			res = "0" + togo;

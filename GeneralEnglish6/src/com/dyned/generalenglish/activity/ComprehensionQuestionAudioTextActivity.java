@@ -28,6 +28,7 @@ public class ComprehensionQuestionAudioTextActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_question_audio_text);
 		AppUtil.AddActivityHistory(this);
+		setHeaderTitle("Comprehension");
 		
 		lessonMgr = LessonManager.getInstance();
 		
