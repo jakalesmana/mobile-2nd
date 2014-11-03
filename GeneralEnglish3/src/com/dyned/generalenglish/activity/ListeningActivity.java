@@ -34,6 +34,7 @@ public class ListeningActivity extends BaseActivity {
 	private long playTime;
 	private ImageView imgLesson; //350 x 233
 	private ImageView imgToggle;
+	private Button btnQuestions;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class ListeningActivity extends BaseActivity {
 		ap = new AudioPlayer(this, lesson.getAudio().split("\\.")[0], audioListener);
 		layoutAudio.addView(ap);
 		
-		Button btnQuestions = (Button) findViewById(R.id.btnQuestion);
+		btnQuestions = (Button) findViewById(R.id.btnQuestion);
 		btnQuestions.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				lessonMgr.doneListening(ListeningActivity.this);
@@ -65,11 +66,13 @@ public class ListeningActivity extends BaseActivity {
 		
 		if (!UserPreference.getInstance(this).isCompletedLesson(lessonMgr.getCurrentUnit().getCode(), lesson.getCode())) {
 			toggleScript.setEnabled(false);
+			btnQuestions.setEnabled(false);
 			AlphaAnimation alpha = new AlphaAnimation(0.2f, 0.2f);
 			alpha.setDuration(0);
 			alpha.setFillAfter(true); 
 			toggleScript.startAnimation(alpha);
 			imgLesson.startAnimation(alpha);
+			btnQuestions.startAnimation(alpha);
 			ap.setDraggable(false);
 		}
 		
@@ -110,11 +113,13 @@ public class ListeningActivity extends BaseActivity {
 		}
 		public void onComplete(){
 			toggleScript.setEnabled(true);
+			btnQuestions.setEnabled(true);
 			AlphaAnimation alpha = new AlphaAnimation(0.2f, 1.0f);
 			alpha.setDuration(0);
 			alpha.setFillAfter(true); 
 			toggleScript.startAnimation(alpha);
 			imgLesson.startAnimation(alpha);
+			btnQuestions.startAnimation(alpha);
 			ap.setDraggable(true);
 		}
 	};
